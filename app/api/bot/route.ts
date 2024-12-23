@@ -2,7 +2,6 @@ export const dynamic = 'force-dynamic';
 export const fetchCache = 'force-no-store';
 
 import { Bot, webhookCallback, InlineKeyboard } from 'grammy';
-import 'dotenv/config';
 
 const token = process.env.TELEGRAM_BOT_TOKEN;
 
