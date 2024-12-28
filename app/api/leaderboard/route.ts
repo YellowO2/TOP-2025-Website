@@ -1,62 +1,58 @@
 import { NextResponse } from 'next/server';
-import { ILeaderboard, ISubOG, PokerCard } from '../../models/Interfaces';
-
-// Mock data for testing (can be replaced later with real data fetching logic)
-const ace1: ISubOG = {
-    subOGName: "Ace 1",
-    cards: ["Ace of Spades", "2 of Hearts", "3 of Diamonds"],
-    lastCardEarnedAt: new Date("2024-12-19T10:00:00Z"),
-};
-
-const ace2: ISubOG = {
-    subOGName: "Ace 2",
-    cards: ["King of Clubs", "Ace of Hearts"],
-    lastCardEarnedAt: new Date("2024-12-18T15:00:00Z"),
-};
-
-// mock og
-// const og1: IOG = {
-//     ogName: "OG1",
-//     subOGs: [ace1, ace2],
-// };
-
-// Leaderboard state (mock for now)
-let leaderboard: ILeaderboard = {
-    allSubOGs: [ace1, ace2], // Example leaderboard sorted by rank
-};
-
-// Function to sort the leaderboard by the number of cards each Sub-OG has (descending order)
-const sortLeaderboard = (leaderboard: ILeaderboard): ILeaderboard => {
-    const sortedSubOGs = leaderboard.allSubOGs.sort((a, b) => b.cards.length - a.cards.length);
-    return {
-        ...leaderboard,
-        allSubOGs: sortedSubOGs
-    };
-};
+import { PokerCard } from '../../models/PokerCard';
+import { OG, SubOG, initializeAllOG } from '../../models/OG';
 
 
-// Function to assign a card to a Sub-OG
-export function assignCardToSubOG(subOG: ISubOG, card: PokerCard): void {
-    subOG.cards.push(card);
-    subOG.lastCardEarnedAt = new Date();
-    leaderboard = sortLeaderboard(leaderboard);
+const allOGs: OG[] = initializeAllOG();
+
+function getAllSubOGs(): SubOG[] {
+    return allOGs.flatMap(og => og.subOGs);
 }
 
-// Function to remove a card from a Sub-OG
-export function removeCardFromSubOG(subOG: ISubOG, cardName: PokerCard): void {
-    const index = subOG.cards.indexOf(cardName);
-    if (index > -1) {
-        subOG.cards.splice(index, 1);
+function findSubOG(subOGName: string): SubOG | undefined {
+    return getAllSubOGs().find(subOG => subOG.subOGName === subOGName);
+}
+
+function sortSubOGsByCardCount(subOGs: SubOG[]): SubOG[] {
+    return [...subOGs].sort((a, b) => b.cards.length - a.cards.length);
+}
+
+export function assignCardToSubOG(subOGName: string, card: PokerCard): void {
+    const subOG = findSubOG(subOGName);
+    if (subOG) {
+        subOG.addCard(card);
     }
-    leaderboard = sortLeaderboard(leaderboard);
 }
 
+export function removeCardFromSubOG(subOGName: string, card: PokerCard): void {
+    const subOG = findSubOG(subOGName);
+    if (subOG) {
+        subOG.removeCard(card);
+    }
+}
 
 // Main GET handler for the leaderboard API route
 export async function GET() {
-    // Sort the leaderboard before returning it (simulating real-time updates)
-    leaderboard = sortLeaderboard(leaderboard);
+    // Create the response object with both OGs and sorted SubOGs
+    const response = {
+        ogs: allOGs.map(og => ({
+            name: og.name,
+            title: og.title,
+            totalCards: og.totalCards,
+            subOGs: og.subOGs.map(subOG => ({
+                name: subOG.subOGName,
+                cardCount: subOG.cards.length,
+                lastCardEarnedAt: subOG.lastCardEarnedAt,
+                cards: subOG.cards
+            }))
+        })),
+        // Include a sorted list of all SubOGs for the leaderboard
+        leaderboard: sortSubOGsByCardCount(getAllSubOGs()).map(subOG => ({
+            name: subOG.subOGName,
+            cardCount: subOG.cards.length,
+            lastCardEarnedAt: subOG.lastCardEarnedAt
+        }))
+    };
 
-    // Return the sorted leaderboard as a JSON response
-    return NextResponse.json(leaderboard);
+    return NextResponse.json(response);
 }
