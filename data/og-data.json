@@ -1,0 +1,342 @@
+[
+  {
+    "name": "Ace",
+    "title": "The High Ace",
+    "subOGs": [
+      {
+        "subOGName": "Ace 1",
+        "cards": [
+          "Queen of Hearts"
+        ],
+        "lastCardEarnedAt": "2024-12-30T07:42:22.660Z"
+      },
+      {
+        "subOGName": "Ace 2",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      },
+      {
+        "subOGName": "Ace 3",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      },
+      {
+        "subOGName": "Ace 4",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      }
+    ]
+  },
+  {
+    "name": "Two",
+    "title": "Double Deuce",
+    "subOGs": [
+      {
+        "subOGName": "Two 1",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      },
+      {
+        "subOGName": "Two 2",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      },
+      {
+        "subOGName": "Two 3",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      },
+      {
+        "subOGName": "Two 4",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      }
+    ]
+  },
+  {
+    "name": "Three",
+    "title": "Triple Threat",
+    "subOGs": [
+      {
+        "subOGName": "Three 1",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      },
+      {
+        "subOGName": "Three 2",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      },
+      {
+        "subOGName": "Three 3",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      },
+      {
+        "subOGName": "Three 4",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      }
+    ]
+  },
+  {
+    "name": "Four",
+    "title": "Fourfold Fury",
+    "subOGs": [
+      {
+        "subOGName": "Four 1",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      },
+      {
+        "subOGName": "Four 2",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      },
+      {
+        "subOGName": "Four 3",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      },
+      {
+        "subOGName": "Four 4",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      }
+    ]
+  },
+  {
+    "name": "Five",
+    "title": "Five of Fortune",
+    "subOGs": [
+      {
+        "subOGName": "Five 1",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      },
+      {
+        "subOGName": "Five 2",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      },
+      {
+        "subOGName": "Five 3",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      },
+      {
+        "subOGName": "Five 4",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      }
+    ]
+  },
+  {
+    "name": "Six",
+    "title": "Sixth Sense",
+    "subOGs": [
+      {
+        "subOGName": "Six 1",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      },
+      {
+        "subOGName": "Six 2",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      },
+      {
+        "subOGName": "Six 3",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      },
+      {
+        "subOGName": "Six 4",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      }
+    ]
+  },
+  {
+    "name": "Seven",
+    "title": "Seventh Heaven",
+    "subOGs": [
+      {
+        "subOGName": "Seven 1",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      },
+      {
+        "subOGName": "Seven 2",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      },
+      {
+        "subOGName": "Seven 3",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      },
+      {
+        "subOGName": "Seven 4",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      }
+    ]
+  },
+  {
+    "name": "Eight",
+    "title": "Eighth Fate",
+    "subOGs": [
+      {
+        "subOGName": "Eight 1",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      },
+      {
+        "subOGName": "Eight 2",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      },
+      {
+        "subOGName": "Eight 3",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      },
+      {
+        "subOGName": "Eight 4",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      }
+    ]
+  },
+  {
+    "name": "Nine",
+    "title": "Cloud Nine",
+    "subOGs": [
+      {
+        "subOGName": "Nine 1",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      },
+      {
+        "subOGName": "Nine 2",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      },
+      {
+        "subOGName": "Nine 3",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      },
+      {
+        "subOGName": "Nine 4",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      }
+    ]
+  },
+  {
+    "name": "Ten",
+    "title": "Decade Dominion",
+    "subOGs": [
+      {
+        "subOGName": "Ten 1",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      },
+      {
+        "subOGName": "Ten 2",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      },
+      {
+        "subOGName": "Ten 3",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      },
+      {
+        "subOGName": "Ten 4",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      }
+    ]
+  },
+  {
+    "name": "Jack",
+    "title": "Jester's Play",
+    "subOGs": [
+      {
+        "subOGName": "Jack 1",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      },
+      {
+        "subOGName": "Jack 2",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      },
+      {
+        "subOGName": "Jack 3",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      },
+      {
+        "subOGName": "Jack 4",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      }
+    ]
+  },
+  {
+    "name": "Queen",
+    "title": "Regal Majesty",
+    "subOGs": [
+      {
+        "subOGName": "Queen 1",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      },
+      {
+        "subOGName": "Queen 2",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      },
+      {
+        "subOGName": "Queen 3",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      },
+      {
+        "subOGName": "Queen 4",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      }
+    ]
+  },
+  {
+    "name": "King",
+    "title": "Crowned Conqueror",
+    "subOGs": [
+      {
+        "subOGName": "King 1",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      },
+      {
+        "subOGName": "King 2",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      },
+      {
+        "subOGName": "King 3",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      },
+      {
+        "subOGName": "King 4",
+        "cards": [],
+        "lastCardEarnedAt": ""
+      }
+    ]
+  }
+]
