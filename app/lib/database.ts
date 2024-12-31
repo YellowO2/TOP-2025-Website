@@ -8,6 +8,7 @@ import { PokerCard } from '../models/PokerCard';
 let allOGs: OG[] = [];
 let IS_INITIALIZED = false;
 
+
 // --------- Initialize data --------
 // This function is called in /instrument.ts
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

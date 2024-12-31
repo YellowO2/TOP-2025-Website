@@ -6,9 +6,13 @@
       {
         "subOGName": "Ace 1",
         "cards": [
-          "Queen of Hearts"
+          "Jack of Clubs",
+          "5 of Hearts",
+          "2 of Clubs",
+          "3 of Clubs",
+          "5 of Clubs"
         ],
-        "lastCardEarnedAt": "2024-12-30T07:42:22.660Z"
+        "lastCardEarnedAt": "2024-12-31T09:38:11.317Z"
       },
       {
         "subOGName": "Ace 2",
