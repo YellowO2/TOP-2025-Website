@@ -68,3 +68,4 @@
 
 .column:nth-of-type(5) {
   @apply -top-[80%];
+}
