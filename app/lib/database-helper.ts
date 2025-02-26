@@ -1,11 +1,44 @@
 // This file defines some code to save and load the OG data
-
-import fs from 'fs/promises';
-import path from 'path';
 import { OG, initializeAllOG, OGNames, SubOG } from '../models/OG';
 import { PokerCard } from '../models/PokerCard';
 
-const DATA_FILE = path.join(process.cwd(), 'data', 'og-data.json');
+const API_KEY = '$2a$10$h1KvfzfEHGZiWndZyItuauBMpkSGUpJcHVD/'+process.env.JSONBIN_API_KEY;
+const JSONBIN_URL = `https://api.jsonbin.io/v3/b/${process.env.JSONBIN_BIN_ID}`;
+
+
+export async function saveOGData(ogs: OG[]): Promise<void> {
+    try {
+        const serializedData = serializeOGs(ogs);
+        await fetch(JSONBIN_URL, {
+            method: 'PUT',
+            headers: {
+                'X-Master-Key': API_KEY!,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(serializedData, null, 2)
+        });
+    } catch (error) {
+        console.error('Error saving OG data:', error);
+    }
+}
+
+export async function loadOGData(): Promise<OG[]> {
+    try {
+
+        const response = await fetch(`${JSONBIN_URL}/latest`, {
+            headers: { 'X-Master-key': API_KEY! }
+        });
+        const { record } = await response.json();
+        console.log(response);
+        return deserializeOGs(record);
+    } catch {
+        console.log('No saved data found, initializing fresh data');
+        const freshOGs = initializeAllOG();
+        await saveOGData(freshOGs);
+        return freshOGs;
+    }
+}
+
 
 // Interface for serialized data
 interface SerializedSubOG {
@@ -58,31 +91,4 @@ function deserializeOGs(data: SerializedOG[]): OG[] {
 
         return og;
     });
-}
-
-
-// Main persistence functions
-export async function saveOGData(ogs: OG[]): Promise<void> {
-    try {
-        await fs.mkdir(path.dirname(DATA_FILE), { recursive: true });
-        const serializedData = serializeOGs(ogs);
-        await fs.writeFile(DATA_FILE, JSON.stringify(serializedData, null, 2));
-    } catch (error) {
-        console.error('Error saving OG data:', error);
-    }
-}
-
-export async function loadOGData(): Promise<OG[]> {
-    try {
-        const fileData = await fs.readFile(DATA_FILE, 'utf-8');
-        const savedData = JSON.parse(fileData) as SerializedOG[];
-        return deserializeOGs(savedData);
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (error) {
-        
-        console.log('No saved data found, initializing fresh data');
-        const freshOGs = initializeAllOG();
-        await saveOGData(freshOGs); // Create initial save file
-        return freshOGs;
-    }
 }
