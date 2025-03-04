@@ -53,9 +53,11 @@ function Navbar() {
         <TiChevronRightOutline size={30} />
       </button>
 
-      <button onClick={handleSideMenu}  className='fixed md:hidden px-8 items-center flex w-screen h-[127px] z-50'>
-        <HiMenu size={30} className='flex bg-black'/>
-      </button>
+      <div className='fixed md:hidden px-8 items-center flex w-screen h-[127px] z-50'>
+        <button onClick={handleSideMenu}>
+          <HiMenu size={30} className='flex bg-black'/>
+        </button>
+      </div>
     </div>
   )
 }
