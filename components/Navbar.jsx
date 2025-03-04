@@ -2,45 +2,62 @@
 import Link from 'next/link'
 import React, { useState } from 'react'
 import { HiMenu } from "react-icons/hi";
+import { MdOutlineSubdirectoryArrowRight } from "react-icons/md";
+import { TiChevronRightOutline } from "react-icons/ti";
 
 function Navbar() {
   const [sideOpen, setSideOpen] = useState(false);
 
-  function handleMenu() {
+  function handleSideMenu() {
     setSideOpen(!sideOpen);
   }
 
   return (
-    <div className='fixed flex'>
-      <div className='bg-background hidden md:flex w-screen h-28 items-center justify-between px-24'>
-        <div>MAIN LOGO</div>
-        <ul className='flex gap-10'>
-          <li><Link href='/' className='flex navbaritem'>TABTITLE</Link></li>
-          <li><Link href='/' className='flex navbaritem'>TABTITLE</Link></li>
-          <li><Link href='/' className='flex navbaritem'>TABTITLE</Link></li>
-          <li><Link href='/' className='flex navbaritem'>TABTITLE</Link></li>
-        </ul>
-      </div>
-      <div className='bg-background md:hidden flex w-screen h-24 items-center justify-start px-8'>
-        <button onClick={handleMenu} className='z-20'>
-          <HiMenu size={30} className={`${sideOpen ? "text-background" : "text-text"
-            }`} />
-        </button>
-        <div
-          className={`absolute top-0 left-0 h-screen justify-center flex text-background w-[70%] bg-primary z-10 transform ${sideOpen ? "translate-x-0" : "-translate-x-[100vw]"
-            } transition-transform duration-300 ease-in-out`}
-        >
-          <ul className='flex flex-col gap-10 py-28'>
-            <li><Link href='/' className='flex sidebaritem'>TABTITLE</Link></li>
-            <li><Link href='/' className='flex sidebaritem'>TABTITLE</Link></li>
-            <li><Link href='/' className='flex sidebaritem'>TABTITLE</Link></li>
-            <li><Link href='/' className='flex sidebaritem'>TABTITLE</Link></li>
-          </ul>
+    <div className='flex'>
 
+      <div className={`fixed flex justify-center z-40 top-0 left-0 rounded-r-3xl h-screen w-screen md:w-[30vw] lg:w-[16vw] bg-black/80 backdrop-blur-sm transition-transform duration-300 ${sideOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+        <div className='flex flex-col h-full py-32 md:py-12 px-3 justify-between'>
+          <div className='flex flex-col'>
+            <div className='text-3xl font-home tracking-[-1px] mb-4'>
+              WELCOME
+            </div>
+            <ul className='flex flex-col gap-2 mb-8'>
+              <li className='flex gap-2 items-center'><MdOutlineSubdirectoryArrowRight size={16} /> <Link href='/' className='regularLink'>About us</Link></li>
+              <li className='flex gap-2 items-center'><MdOutlineSubdirectoryArrowRight size={16} /> <Link href='/leaderboard' className='regularLink'>Leaderboard</Link></li>
+              <li className='flex gap-2 items-center'><MdOutlineSubdirectoryArrowRight size={16} /> <Link href='/' className='regularLink'>Blog</Link></li>
+            </ul>
+            <div className='text-3xl font-home tracking-[-1px] mb-4'>
+              JOIN US
+            </div>
+            <ul className='flex flex-col gap-2 mb-8'>
+              <li className='flex gap-2 items-center'><MdOutlineSubdirectoryArrowRight size={16} /> <Link href='/play' className='regularLinkRed'>Poker</Link></li>
+              <li className='flex gap-2 items-center'><MdOutlineSubdirectoryArrowRight size={16} /> <Link href='/' className='regularLinkRed'>Subscribe</Link></li>
+            </ul>
+          </div>
+          <div className='flex flex-col'>
+            <div className='text-3xl font-home tracking-[-1px] mb-4'>
+              SOCIALS
+            </div>
+            <ul className='flex flex-col gap-2 mb-8'>
+              <li className='flex gap-2 items-center'><MdOutlineSubdirectoryArrowRight size={16} /> <Link href='/' className='socialLink'>Instagram</Link></li>
+              <li className='flex gap-2 items-center'><MdOutlineSubdirectoryArrowRight size={16} /> <Link href='/' className='socialLink'>Linkedin</Link></li>
+              <li className='flex gap-2 items-center'><MdOutlineSubdirectoryArrowRight size={16} /> <Link href='/' className='socialLink'>Telegram</Link></li>
+            </ul>
+          </div>
         </div>
       </div>
+
+      <button 
+        onClick={handleSideMenu} 
+        className={`hidden md:flex fixed top-0 translate-y-10 left-[16vw] bg-black z-50 border rounded-md  hover:text-red-600  hover:border-red-600 transition ease-in-out duration-300  ${sideOpen ? 'rotate-180 lg:-translate-x-4 translate-x-28'  : '-translate-x-[12vw] rotate-0'}`}>
+        <TiChevronRightOutline size={30} />
+      </button>
+
+      <button onClick={handleSideMenu}  className='fixed md:hidden px-8 items-center flex w-screen h-[127px] z-50'>
+        <HiMenu size={30} className='flex bg-black'/>
+      </button>
     </div>
   )
 }
 
-export default Navbar
+export default Navbar;
