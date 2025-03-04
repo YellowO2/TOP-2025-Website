@@ -2731,6 +2731,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lenis@npm:^1.1.22":
+  version: 1.1.22
+  resolution: "lenis@npm:1.1.22"
+  peerDependencies:
+    "@nuxt/kit": ">=3.0.0"
+    react: ">=17.0.0"
+    vue: ">=3.0.0"
+  peerDependenciesMeta:
+    "@nuxt/kit":
+      optional: true
+    react:
+      optional: true
+    vue:
+      optional: true
+  checksum: 10c0/8d19d6082039f0f502ae9af91ee37e6c11a844b74911cb57a9bd4ce81ceb7726d3ccacfd5cd8bd495c2cf058aeac42aa20513846c7edaf317605aa1089479a55
+  languageName: node
+  linkType: hard
+
 "levn@npm:^0.4.1":
   version: 0.4.1
   resolution: "levn@npm:0.4.1"
@@ -4251,6 +4269,7 @@ __metadata:
     eslint-config-next: "npm:15.1.1"
     framer-motion: "npm:^12.4.7"
     grammy: "npm:^1.33.0"
+    lenis: "npm:^1.1.22"
     next: "npm:15.1.1"
     postcss: "npm:^8"
     react: "npm:^19.0.0"

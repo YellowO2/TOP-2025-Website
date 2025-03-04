@@ -24,8 +24,7 @@ export default function Home() {
                     className='flex w-16 z-10 mb-4'
                 />
                 <div className='flex text-sm mb-2'>to play, join our</div>
-                <div className='flex text-[32px] cursor-pointer w-[20vw] text-center leading-8 hover:underline'>telegram channel</div>
-
+                <div className='flex text-[32px] cursor-pointer md:w-[20vw] px-32 text-center items-center justify-center leading-8 hover:underline'>telegram channel</div>
             </div>
         </div>
     );

@@ -1,8 +1,8 @@
 'use client'
 import { useState } from "react";
 
-const GRID_SIZE = 100; // Adjust grid density
-const PIXEL_SIZE = 24; // Adjust pixel size
+const GRID_SIZE = 100;
+const PIXEL_SIZE = 10;
 
 const PixelGrid = () => {
   const [hoveredPixels, setHoveredPixels] = useState(new Set());
@@ -11,14 +11,13 @@ const PixelGrid = () => {
     const pixelKey = `${row}-${col}`;
     setHoveredPixels((prev) => new Set(prev).add(pixelKey));
 
-    // Remove pixel after a delay for fading effect
     setTimeout(() => {
       setHoveredPixels((prev) => {
         const newSet = new Set(prev);
         newSet.delete(pixelKey);
         return newSet;
       });
-    }, 300); // Adjust fade-out delay
+    }, 300);
   };
 
   return (
@@ -37,7 +36,7 @@ const PixelGrid = () => {
             <div
               key={`${row}-${col}`}
               className={`transition-opacity duration-500 ${
-                isHovered ? "opacity-100 bg-[#951010]" : "opacity-0"
+                isHovered ? "opacity-100 bg-white" : "opacity-0"
               }`}
               style={{
                 width: PIXEL_SIZE,
