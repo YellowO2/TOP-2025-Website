@@ -16,9 +16,9 @@ function Navbar() {
     <div className='flex'>
 
       <div className={`fixed flex justify-center z-40 top-0 left-0 rounded-r-3xl h-screen w-screen md:w-[30vw] lg:w-[16vw] bg-black/90 md:bg-black/80 backdrop-blur-sm transition-transform duration-300 ${sideOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-        <div className='flex flex-col w-full h-full py-36 md:py-12 px-3 justify-between'>
-          <div className='flex w-full px-20 md:px-4 flex-col'>
-            <div className='text-[54px] md:text-3xl font-home tracking-[-1px] mb-16 md:mb-4'>
+        <div className='flex flex-col w-full h-full pt-32 pb-10 md:py-12 px-3 justify-between'>
+          <div className='flex w-full px-10 md:px-4 flex-col'>
+            <div className='text-[40px] md:text-3xl font-home tracking-[-1px] mb-16 md:mb-4'>
               WELCOME
             </div>
             <ul className='flex flex-col gap-2 mb-8'>
@@ -34,7 +34,7 @@ function Navbar() {
               <li className='flex gap-2 items-center'><MdOutlineSubdirectoryArrowRight size={16} /> <Link href='/' className='regularLinkRed'>Subscribe</Link></li>
             </ul>
           </div>
-          <div className='flex w-full px-20 md:px-4 flex-col'>
+          <div className='flex w-full px-10 md:px-4 flex-col'>
             <div className='text-3xl font-home tracking-[-1px] mb-4'>
               SOCIALS
             </div>

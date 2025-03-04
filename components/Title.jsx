@@ -42,10 +42,10 @@ function Title() {
         The official website for NTU CCDS TOP is here. Want to play? Join us now.
       </div>
 
-      <button className='flex buttonMain'>
+      <Link href='/play' className='flex buttonMain'>
         POKER
         <BiSolidChevronRight size={20} className='ml-2 inline' />
-      </button>
+      </Link>
     </div>
   )
 }
