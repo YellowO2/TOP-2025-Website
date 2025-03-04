@@ -9,6 +9,15 @@ export default {
   ],
   theme: {
     extend: {
+      animation: {
+        marquee: "marqueeScroll 20s linear infinite",
+      },
+      keyframes: {
+        marqueeScroll: {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-100%)" },
+        },
+      },
       colors: {
         'text': '#efdfdf',
         'background': '#0f0606',
@@ -21,8 +30,11 @@ export default {
        
       fontFamily:{
         jsMath: ['jsMath-cmr10', 'serif'],
-        poppins: ["Poppins-Regular, sans-serif"],
-        poppinsmed: ["Poppins-Medium, sans-serif"],
+        poppins: ['Poppins-Regular', ' sans-serif'],
+        poppinsmed: ['Poppins-Medium','sans-serif'],
+        gugi: ['Gugi-Regular', 'sans-serif'],
+        homebold: ['HomeVideoBold','sans-serif'],
+        home: ['HomeVideo', 'sans-serif'],
       }
     },
   },
