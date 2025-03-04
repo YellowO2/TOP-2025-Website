@@ -1,5 +1,5 @@
 import Title from "@/components/Title";
-import PixelGrid from "@/components/PixelGrid";
+// import PixelGrid from "@/components/PixelGrid";
 
 export default function Home() {
 
