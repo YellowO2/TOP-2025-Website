@@ -24,7 +24,15 @@ export default function Home() {
                     className='flex w-16 z-10 mb-4'
                 />
                 <div className='flex text-sm mb-2'>to play, join our</div>
-                <div className='flex text-[32px] cursor-pointer md:w-[20vw] px-32 text-center items-center justify-center leading-8 hover:underline'>telegram channel</div>
+                <a
+                    href="https://t.me/+sPK3pU4QXmdkNjg1"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex text-[32px] cursor-pointer md:w-[20vw] px-32 text-center items-center justify-center leading-8 hover:underline"
+                >
+                    telegram channel
+                </a>
+
             </div>
         </div>
     );

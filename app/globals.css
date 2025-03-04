@@ -41,7 +41,7 @@
 }
 
 .buttonMain2{
-  @apply hover:text-black cursor-pointer hover:bg-white items-center pl-4 text-sm pr-2 py-2 z-10 bg-black text-white border border-white transition ease-in-out duration-300
+  @apply hover:text-black cursor-pointer hover:bg-white items-center pl-4 text-sm pr-2 py-1 z-10 bg-black text-white border border-white transition ease-in-out duration-300
 }
 
 .fade-mask {

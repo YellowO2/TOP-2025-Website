@@ -38,9 +38,9 @@ function Leaderboard() {
                     className='object-cover object-left md:object-bottom'
                 />
             </div>
-            <div className='absolute z-20 left-0 right-0 h-full flex items-center justify-center flex-col'>
+            <div className='absolute z-20 left-0 right-0 h-screen flex items-center justify-center flex-col'>
                 <div className='w-[75vw] mb-8 flex justify-between items-center'>
-                    <div className='flex text-[30px] md:text-[54px] tracking-[-2px]'>LEADERBOARD</div>
+                    <div className='flex text-[24px] md:text-[54px] tracking-[-2px]'>LEADERBOARD</div>
                     <button 
                         onClick={fetchLeaderboardData} 
                         className='buttonMain2 flex flex-row gap-2 items-center'
