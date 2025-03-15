@@ -45,7 +45,9 @@ interface SerializedSubOG {
     subOGName: string;
     cards: PokerCard[];
     lastCardEarnedAt: string;
+    score: number; // ✅ Add score here
 }
+
 
 interface SerializedOG {
     name: string;
@@ -62,12 +64,14 @@ function serializeOGs(ogs: OG[]): SerializedOG[] {
         subOGs: og.subOGs.map(subOG => ({
             subOGName: subOG.subOGName,
             cards: subOG.cards,
+            score: subOG.score,
             lastCardEarnedAt: subOG.lastCardEarnedAt?.toISOString() || ''
         }))
     }));
 }
 
 function deserializeOGs(data: SerializedOG[]): OG[] {
+    console.log("deserializeOGs", data);
     return data.map(serializedOG => {
 
         const og = new OG(serializedOG.name as OGNames, serializedOG.title);
@@ -84,6 +88,8 @@ function deserializeOGs(data: SerializedOG[]): OG[] {
             if (serializedSubOG.lastCardEarnedAt !== '') {
                 subOG.lastCardEarnedAt = new Date(serializedSubOG.lastCardEarnedAt);
             }
+
+            subOG.setScore(serializedSubOG.score || 0);
 
             // Add the SubOG to the OG
             og.subOGs.push(subOG);

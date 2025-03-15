@@ -36,11 +36,13 @@ export const OG_TITLES: Record<OGNames, string> = {
 export class SubOG {
     private _cards: PokerCard[] = [];
     public lastCardEarnedAt: Date | null = null;
-    
+    private _score: number = 0; // ✅ Add score property
+
     constructor(
         public readonly subOGName: string,
     ) {}
 
+    // Card methods
     get cards(): PokerCard[] {
         return [...this._cards];
     }
@@ -48,17 +50,32 @@ export class SubOG {
     addCard(card: PokerCard) {
         this._cards.push(card);
         this.lastCardEarnedAt = new Date();
-        // this.parent.incrementCardCount();
     }
 
     removeCard(card: PokerCard) {
         const index = this._cards.findIndex(c => c === card);
         if (index !== -1) {
             this._cards.splice(index, 1);
-            // this.parent.decrementCardCount();
         }
     }
+
+    get score(): number {
+        return this._score;
+    }
+
+    addScore(amount: number) {
+        this._score += amount;
+    }
+
+    setScore(amount: number) {
+        this._score = amount;
+    }
+
+    resetScore() {
+        this._score = 0;
+    }
 }
+
 
 export class OG {
     // private _totalCards: number = 0;
@@ -69,25 +86,11 @@ export class OG {
         public readonly title: string = OG_TITLES[name] // title = name for now
     ) {}
 
-    // get totalCards(): number {
-    //     return this._totalCards;
-    // }
-
     createNewSubOG(name: string): SubOG {
         const subOG = new SubOG(name);
         this.subOGs.push(subOG);
         return subOG;
     }
-
-    // incrementCardCount() {
-    //     this._totalCards++;
-    // }
-
-    // decrementCardCount() {
-    //     if (this._totalCards > 0) {
-    //         this._totalCards--;
-    //     }
-    // }
 }
 
 
