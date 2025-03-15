@@ -17,21 +17,22 @@ if (!isDataInitialized()) initializeData();
 
 const helpText = `
 Available commands:
-/add [og] [subog] [card] - Add a card to a SubOG
-/remove [og] [subog] [card] - Remove a card from a SubOG
-/view [og] [subog] - View cards in a SubOG
+/add [district] [sub-district] [card] - Add a card to a SubOG
+/remove [district] [sub-district] [card] - Remove a card from a SubOG
+/view [district] [sub-district] - View cards in a SubOG
 
 Format:
-- og: 1-13 (1=Ace, 11=Jack, 12=Queen, 13=King)
-- subog: 1-4
+- district: 1-13 (1=District 1, 2=District 2, ..., 13=District 13)
+- sub-district: 1-4
 - card: [suit][rank] (e.g., c2 for 2 of Clubs)
 - Suits: s(Spades), h(Hearts), d(Diamonds), c(Clubs)
 - Rank: 1-13 (1=Ace, 11=Jack, 12=Queen, 13=King)
 
 Example:
-/add 1 1 c2 (Adds 2 of Clubs to first SubOG of Ace)
-/view 1 1 (Views cards in first SubOG of Ace)
+/add 1 1 c2 (Adds 2 of Clubs to first Sub-District of District 1)
+/view 1 1 (Views cards in first Sub-District of District 1)
 `;
+
 
 
 // Bot commands
