@@ -6,7 +6,7 @@ import { BiRefresh } from "react-icons/bi";
 function Leaderboard() {
     const [leaderboardData, setLeaderboardData] = useState([]);
     const [loading, setLoading] = useState(false);
-    const day2 = false;
+    const day2 = true;
 
     const fetchLeaderboardData = async () => {
         setLoading(true);
