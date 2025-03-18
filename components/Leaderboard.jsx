@@ -6,6 +6,7 @@ import { BiRefresh } from "react-icons/bi";
 function Leaderboard() {
     const [leaderboardData, setLeaderboardData] = useState([]);
     const [loading, setLoading] = useState(false);
+    const day2 = false;
 
     const fetchLeaderboardData = async () => {
         setLoading(true);
@@ -41,8 +42,8 @@ function Leaderboard() {
             <div className='absolute z-20 left-0 right-0 h-screen flex items-center justify-center flex-col'>
                 <div className='w-[75vw] mb-8 flex justify-between items-center'>
                     <div className='flex text-[24px] md:text-[54px] tracking-[-2px]'>LEADERBOARD</div>
-                    <button 
-                        onClick={fetchLeaderboardData} 
+                    <button
+                        onClick={fetchLeaderboardData}
                         className='buttonMain2 flex flex-row gap-2 items-center'
                         disabled={loading}
                     >
@@ -59,7 +60,12 @@ function Leaderboard() {
                             <div className='flex text-sm'>{item.name}</div>
                             <div>
                                 <ul className='justify-between flex'>
-                                    <li className='cardCount text-sm text-center'>{item.cardCount}</li>
+                                    {day2 ? (
+                                        <li className='score text-sm text-center'>{item.score ?? 0}</li>
+
+                                    ) : (
+                                        <li className='cardCount text-sm text-center'>{item.cardCount ?? 0}</li>
+                                    )}
                                 </ul>
                             </div>
                         </div>
