@@ -22,7 +22,7 @@ function Navbar() {
               WELCOME
             </div>
             <ul className='flex flex-col gap-2 mb-8'>
-              <li className='flex gap-2 items-center'><MdOutlineSubdirectoryArrowRight size={16} /> <Link href='/' className='regularLink'>About us</Link></li>
+              <li className='flex gap-2 items-center'><MdOutlineSubdirectoryArrowRight size={16} /> <Link href='/aboutus' className='regularLink'>About us</Link></li>
               <li className='flex gap-2 items-center'><MdOutlineSubdirectoryArrowRight size={16} /> <Link href='/leaderboard' className='regularLink'>Leaderboard</Link></li>
               <li className='flex gap-2 items-center'><MdOutlineSubdirectoryArrowRight size={16} /> <Link href='/' className='regularLink'>Blog</Link></li>
             </ul>
