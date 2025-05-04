@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
-export default function CheckInPage() {
+function CheckInPage() {
   const searchParams = useSearchParams();
   const room = searchParams.get("room");
 
@@ -93,5 +94,13 @@ export default function CheckInPage() {
         </>
       )}
     </div>
+  );
+}
+
+export default function CheckInPageWrapper() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <CheckInPage />
+    </Suspense>
   );
 }
