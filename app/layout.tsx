@@ -13,7 +13,7 @@ interface RootLayoutProps {
 const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
   return (
     <html lang="en">
-      <body className="flex flex-row">
+      <body className="flex flex-col items-center justify-center">
         <Navbar />
         {children}
       </body>
