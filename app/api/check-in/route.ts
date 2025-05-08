@@ -25,7 +25,7 @@ export async function POST(request: Request) {
     // await bot.api.sendMessage(CP_CHAT_ID, messageToCP);
 
     // Send notification to CGL Movement group
-    const messageToCGL = `Check-in: ${subOG} of ${district} checked in at ${room}.`;
+    const messageToCGL = `Check-in: ${subOG} of ${district} is waiting outside ${room}.`;
     await bot.api.sendMessage(CGL_MOVEMENT_CHAT_ID, messageToCGL);
 
     return NextResponse.json({ success: true });
