@@ -2,7 +2,6 @@ export const dynamic = "force-dynamic";
 export const fetchCache = "force-no-store";
 
 import { Bot } from "grammy";
-import { webhookCallback } from "grammy";
 import { scheduleJob } from "node-schedule";
 
 import {
@@ -350,6 +349,6 @@ bot.on("message", (ctx) => {
   return ctx.reply("Please use commands starting with /");
 });
 
-// bot.start();
+bot.start();
 
-export const POST = webhookCallback(bot, "std/http");
+// export const POST = webhookCallback(bot, "std/http");
