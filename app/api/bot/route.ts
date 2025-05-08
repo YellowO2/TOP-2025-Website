@@ -264,6 +264,6 @@ bot.command("setscore", async (ctx) => {
   await ctx.reply(`Score for ${subOG.subOGName} set to ${amount}.`);
 });
 
-bot.start();
-
+// Note: Either use this or the webhookCallback function
+// bot.start();
 export const POST = webhookCallback(bot, "std/http");

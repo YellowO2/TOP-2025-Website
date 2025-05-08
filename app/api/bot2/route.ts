@@ -350,6 +350,6 @@ bot.on("message", (ctx) => {
   return ctx.reply("Please use commands starting with /");
 });
 
-bot.start();
+// bot.start();
 
 export const POST = webhookCallback(bot, "std/http");
