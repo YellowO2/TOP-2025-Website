@@ -1,8 +1,9 @@
 export const dynamic = "force-dynamic";
 export const fetchCache = "force-no-store";
 
-import { Bot } from "grammy";
+import { Bot, webhookCallback } from "grammy";
 import { scheduleJob } from "node-schedule";
+import { day1Activities, day2Activities } from "./schedule";
 
 import {
   getAllOGs,
@@ -16,7 +17,9 @@ const token = process.env.TELEGRAM_BOT_TOKEN_CGLS || "<TELEGRAM BOT2 TOKEN>";
 if (!token)
   throw new Error("TELEGRAM_BOT_TOKEN_CGLS environment variable not found.");
 
-const bot = new Bot(token);
+// Extend Bot type to hold our scheduler flag
+type BotWithScheduler = Bot & { _ogScheduler?: OGScheduler };
+const bot = new Bot(token) as BotWithScheduler;
 
 // Check if OG data initialised
 if (!isDataInitialized()) initializeData();
@@ -47,85 +50,22 @@ class OGScheduler {
 
   constructor(public bot: Bot) {
     console.log("OGScheduler initialized");
-    this.placeholderActivities();
+    this.loadActivities();
     this.scheduleAll();
   }
 
-  public placeholderActivities() {
-    this.activities = [
-      {
-        district: 1,
-        subOG: 1,
-        currentTR: "TR6",
-        nextTR: "TR7",
-        nextActivity: "Poker Run",
-        startTime: "19:16",
-      },
-      {
-        district: 1,
-        subOG: 2,
-        currentTR: "TR67",
-        nextTR: "TR72",
-        nextActivity: "Hide N Seek",
-        startTime: "19:25",
-      },
-      {
-        district: 1,
-        subOG: 1,
-        currentTR: "TR5",
-        nextTR: "TR12",
-        nextActivity: "Relay Race",
-        startTime: "15:00",
-      },
-      {
-        district: 1,
-        subOG: 1,
-        currentTR: "TR7",
-        nextTR: "TR72",
-        nextActivity: "Hide N Seek",
-        startTime: "18:59",
-      },
-      {
-        district: 1,
-        subOG: 2,
-        currentTR: "TR72",
-        nextTR: "TR12",
-        nextActivity: "Relay Race",
-        startTime: "19:25",
-      },
-      {
-        district: 1,
-        subOG: 1,
-        currentTR: "TR12",
-        nextTR: "TR7",
-        nextActivity: "Poker Run",
-        startTime: "11:30",
-      },
-      {
-        district: 1,
-        subOG: 2,
-        currentTR: "TR7",
-        nextTR: "TR6",
-        nextActivity: "Poker Run",
-        startTime: "21:31",
-      },
-      {
-        district: 1,
-        subOG: 2,
-        currentTR: "TR6",
-        nextTR: "TR5",
-        nextActivity: "Poker Run",
-        startTime: "11:30",
-      },
-      {
-        district: 1,
-        subOG: 2,
-        currentTR: "TR5",
-        nextTR: "TR4",
-        nextActivity: "Poker Run",
-        startTime: "11:30",
-      },
-    ];
+  /**
+   * Load schedule based on current date
+   */
+  private loadActivities() {
+    const today = new Date();
+    if (today.getMonth() === 4 && today.getDate() === 10) {
+      this.activities = day1Activities;
+    } else if (today.getMonth() === 4 && today.getDate() === 11) {
+      this.activities = day2Activities;
+    } else {
+      this.activities = [];
+    }
   }
 
   public formatMessage(og: OGActivity): string {
@@ -221,12 +161,16 @@ class OGScheduler {
   }
 
   public clearAllSchedules() {
-    // Note: In a real implementation, we'd need to cancel existing jobs
+    // TODO: I think this should clear all the schedule jobs
     this.activities = [];
   }
 }
 
-const ogScheduler = new OGScheduler(bot);
+// Ensure we only create one scheduler per bot instance
+if (!bot._ogScheduler) {
+  bot._ogScheduler = new OGScheduler(bot);
+}
+const ogScheduler: OGScheduler = bot._ogScheduler;
 
 // Bot commands
 bot.command("help", (ctx) => {
@@ -349,6 +293,5 @@ bot.on("message", (ctx) => {
   return ctx.reply("Please use commands starting with /");
 });
 
-bot.start();
-
-// export const POST = webhookCallback(bot, "std/http");
+// Use webhookCallback for Next.js API route
+export const POST = webhookCallback(bot, "std/http");
