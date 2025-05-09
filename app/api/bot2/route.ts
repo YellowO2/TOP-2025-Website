@@ -1,7 +1,7 @@
 export const dynamic = "force-dynamic";
 export const fetchCache = "force-no-store";
 
-import { Bot } from "grammy";
+import { Bot, webhookCallback } from "grammy";
 import { scheduleJob } from "node-schedule";
 import { day1Activities, day2Activities } from "./schedule";
 
@@ -17,7 +17,9 @@ const token = process.env.TELEGRAM_BOT_TOKEN_CGLS || "<TELEGRAM BOT2 TOKEN>";
 if (!token)
   throw new Error("TELEGRAM_BOT_TOKEN_CGLS environment variable not found.");
 
-const bot = new Bot(token);
+// Extend Bot type to hold our scheduler flag
+type BotWithScheduler = Bot & { _ogScheduler?: OGScheduler };
+const bot = new Bot(token) as BotWithScheduler;
 
 // Check if OG data initialised
 if (!isDataInitialized()) initializeData();
@@ -159,12 +161,16 @@ class OGScheduler {
   }
 
   public clearAllSchedules() {
-    // Note: In a real implementation, we'd need to cancel existing jobs
+    // TODO: I think this should clear all the schedule jobs
     this.activities = [];
   }
 }
 
-const ogScheduler = new OGScheduler(bot);
+// Ensure we only create one scheduler per bot instance
+if (!bot._ogScheduler) {
+  bot._ogScheduler = new OGScheduler(bot);
+}
+const ogScheduler: OGScheduler = bot._ogScheduler;
 
 // Bot commands
 bot.command("help", (ctx) => {
@@ -287,6 +293,5 @@ bot.on("message", (ctx) => {
   return ctx.reply("Please use commands starting with /");
 });
 
-bot.start();
-
-// export const POST = webhookCallback(bot, "std/http");
+// Use webhookCallback for Next.js API route
+export const POST = webhookCallback(bot, "std/http");
