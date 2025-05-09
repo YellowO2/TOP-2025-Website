@@ -49,10 +49,12 @@ Examples:
 
 // Bot commands
 bot.command("help", (ctx) => {
+  if (!isDataInitialized()) initializeData();
   ctx.reply(helpText);
 });
 
 bot.command("start", (ctx) => {
+  if (!isDataInitialized()) initializeData();
   const username = ctx.from?.username
     ? `@${ctx.from.username}`
     : ctx.from?.first_name || "there";
@@ -194,7 +196,7 @@ bot.command("view", async (ctx) => {
 
   await ctx.reply(
     `${subOG.subOGName} \n` +
-      `Cards(${subOG.cards.length}): ${cardList}\n` +
+      `Cards(${subOG.cards.length}):\n ${cardList}\n` +
       `Score: ${score}\n`
   );
 });
