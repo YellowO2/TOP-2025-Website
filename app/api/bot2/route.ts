@@ -3,6 +3,7 @@ export const fetchCache = "force-no-store";
 
 import { Bot } from "grammy";
 import { scheduleJob } from "node-schedule";
+import { day1Activities, day2Activities } from "./schedule";
 
 import {
   getAllOGs,
@@ -47,85 +48,22 @@ class OGScheduler {
 
   constructor(public bot: Bot) {
     console.log("OGScheduler initialized");
-    this.placeholderActivities();
+    this.loadActivities();
     this.scheduleAll();
   }
 
-  public placeholderActivities() {
-    this.activities = [
-      {
-        district: 1,
-        subOG: 1,
-        currentTR: "TR6",
-        nextTR: "TR7",
-        nextActivity: "Poker Run",
-        startTime: "19:16",
-      },
-      {
-        district: 1,
-        subOG: 2,
-        currentTR: "TR67",
-        nextTR: "TR72",
-        nextActivity: "Hide N Seek",
-        startTime: "19:25",
-      },
-      {
-        district: 1,
-        subOG: 1,
-        currentTR: "TR5",
-        nextTR: "TR12",
-        nextActivity: "Relay Race",
-        startTime: "15:00",
-      },
-      {
-        district: 1,
-        subOG: 1,
-        currentTR: "TR7",
-        nextTR: "TR72",
-        nextActivity: "Hide N Seek",
-        startTime: "18:59",
-      },
-      {
-        district: 1,
-        subOG: 2,
-        currentTR: "TR72",
-        nextTR: "TR12",
-        nextActivity: "Relay Race",
-        startTime: "19:25",
-      },
-      {
-        district: 1,
-        subOG: 1,
-        currentTR: "TR12",
-        nextTR: "TR7",
-        nextActivity: "Poker Run",
-        startTime: "11:30",
-      },
-      {
-        district: 1,
-        subOG: 2,
-        currentTR: "TR7",
-        nextTR: "TR6",
-        nextActivity: "Poker Run",
-        startTime: "21:31",
-      },
-      {
-        district: 1,
-        subOG: 2,
-        currentTR: "TR6",
-        nextTR: "TR5",
-        nextActivity: "Poker Run",
-        startTime: "11:30",
-      },
-      {
-        district: 1,
-        subOG: 2,
-        currentTR: "TR5",
-        nextTR: "TR4",
-        nextActivity: "Poker Run",
-        startTime: "11:30",
-      },
-    ];
+  /**
+   * Load schedule based on current date
+   */
+  private loadActivities() {
+    const today = new Date();
+    if (today.getMonth() === 4 && today.getDate() === 10) {
+      this.activities = day1Activities;
+    } else if (today.getMonth() === 4 && today.getDate() === 11) {
+      this.activities = day2Activities;
+    } else {
+      this.activities = [];
+    }
   }
 
   public formatMessage(og: OGActivity): string {
