@@ -1,7 +1,7 @@
 export const dynamic = "force-dynamic";
 export const fetchCache = "force-no-store";
 
-import { Bot, webhookCallback } from "grammy";
+import { Bot } from "grammy";
 import { scheduleJob } from "node-schedule";
 import { day1Activities, day2Activities } from "./schedule";
 
@@ -293,5 +293,6 @@ bot.on("message", (ctx) => {
   return ctx.reply("Please use commands starting with /");
 });
 
-// Use webhookCallback for Next.js API route
-export const POST = webhookCallback(bot, "std/http");
+bot.start();
+
+// export const POST = webhookCallback(bot, "std/http");
