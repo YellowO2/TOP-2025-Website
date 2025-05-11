@@ -21,14 +21,6 @@ if (!isDataInitialized()) initializeData();
 const helpText = `
 Available commands:
 /view - View cards and score of all 4 SubOGs in your OG
-
-Format:
-- district: 1-13 (1=District 1, 2=District 2, ..., 13=District 13)
-- sub-district: 1-4
-- card: [suit][rank] (e.g., c2 for 2 of Clubs)
-- Suits: s(Spades), h(Hearts), d(Diamonds), c(Clubs)
-- Rank: 1-13 (1=Ace, 11=Jack, 12=Queen, 13=King)
-- amount: Integer value for points
 `;
 
 // Bot commands
