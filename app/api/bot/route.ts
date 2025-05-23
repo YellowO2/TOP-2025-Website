@@ -1,7 +1,7 @@
 export const dynamic = "force-dynamic";
 export const fetchCache = "force-no-store";
 
-import { Bot, webhookCallback } from "grammy";
+import { Bot, webhookCallback, Context } from "grammy";
 import {
   assignCardToSubOG,
   removeCardFromSubOG,
@@ -19,6 +19,39 @@ if (!token)
   throw new Error("TELEGRAM_BOT_TOKEN environment variable not found.");
 
 const bot = new Bot(token);
+
+// check if the command is from the admin chat
+async function isUserAdmin(ctx: Context): Promise<boolean> {
+  const adminChatIdString = process.env.ADMIN_CHAT_ID;
+  if (!adminChatIdString) {
+    console.error("Error: ADMIN_CHAT_ID environment variable is not set.");
+    if (ctx.chat) {
+      await ctx.reply(
+        "This bot is not configured for access control. Please configure it."
+      );
+    }
+    return false;
+  }
+
+  const adminChatId = parseInt(adminChatIdString);
+
+  if (!ctx.chat) {
+    console.warn("Denied access. Please use the admin chat.");
+    return false;
+  }
+
+  if (ctx.chat.id !== adminChatId) {
+    console.log(
+      `Command from user ${ctx.from?.id || "unknown"} in chat ${
+        ctx.chat.id
+      } (type: ${
+        ctx.chat.type
+      }). Expected admin chat ${adminChatId}. Denying access.`
+    );
+    return false;
+  }
+  return true;
+}
 
 // Check if OG data initialised
 if (!isDataInitialized()) initializeData();
@@ -48,12 +81,22 @@ Examples:
 `;
 
 // Bot commands
-bot.command("help", (ctx) => {
+bot.command("help", async (ctx) => {
+  if (!(await isUserAdmin(ctx))) {
+    return ctx.reply(
+      "You are not authorized to use this command. Please use the admin chat."
+    );
+  }
   if (!isDataInitialized()) initializeData();
   ctx.reply(helpText);
 });
 
-bot.command("start", (ctx) => {
+bot.command("start", async (ctx) => {
+  if (!(await isUserAdmin(ctx))) {
+    return ctx.reply(
+      "You are not authorized to use this command in this chat. Please use the admin chat."
+    );
+  }
   if (!isDataInitialized()) initializeData();
   const username = ctx.from?.username
     ? `@${ctx.from.username}`
@@ -64,6 +107,12 @@ bot.command("start", (ctx) => {
 });
 
 bot.command("add", async (ctx) => {
+  if (!(await isUserAdmin(ctx))) {
+    // Added check
+    return ctx.reply(
+      "You are not authorized to use this command in this chat."
+    );
+  }
   if (!ctx.message) {
     return ctx.reply("Invalid format.");
   }
@@ -113,6 +162,12 @@ bot.command("add", async (ctx) => {
 });
 
 bot.command("remove", async (ctx) => {
+  if (!(await isUserAdmin(ctx))) {
+    // Added check
+    return ctx.reply(
+      "You are not authorized to use this command in this chat."
+    );
+  }
   if (!ctx.message) {
     return ctx.reply("Invalid format.");
   }
@@ -156,6 +211,12 @@ bot.command("remove", async (ctx) => {
 });
 
 bot.command("view", async (ctx) => {
+  if (!(await isUserAdmin(ctx))) {
+    // Added check
+    return ctx.reply(
+      "You are not authorized to use this command in this chat."
+    );
+  }
   if (!ctx.message) {
     return ctx.reply("Invalid format.");
   }
@@ -203,6 +264,12 @@ bot.command("view", async (ctx) => {
 
 //For Direct Point (called score), day 2 mass games
 bot.command("addscore", async (ctx) => {
+  if (!(await isUserAdmin(ctx))) {
+    // Added check
+    return ctx.reply(
+      "You are not authorized to use this command in this chat."
+    );
+  }
   if (!ctx.message) {
     return ctx.reply("Invalid format.");
   }
@@ -242,6 +309,12 @@ bot.command("addscore", async (ctx) => {
 });
 
 bot.command("setscore", async (ctx) => {
+  if (!(await isUserAdmin(ctx))) {
+    // Added check
+    return ctx.reply(
+      "You are not authorized to use this command in this chat."
+    );
+  }
   const args = ctx.message?.text.split(" ").slice(1);
   if (!args || args.length !== 3) {
     return ctx.reply(
@@ -267,6 +340,12 @@ bot.command("setscore", async (ctx) => {
 });
 
 bot.command("reset", async (ctx) => {
+  if (!(await isUserAdmin(ctx))) {
+    // Added check
+    return ctx.reply(
+      "You are not authorized to use this command in this chat."
+    );
+  }
   try {
     initializeData();
 
