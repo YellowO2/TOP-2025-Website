@@ -20,7 +20,7 @@ if (!isDataInitialized()) initializeData();
 
 const helpText = `
 Available commands:
-/view - View cards and score of all 4 SubOGs in your OG
+/view - View cards of all 4 SubOGs in your OG
 `;
 
 // Bot commands
@@ -33,7 +33,7 @@ bot.command("start", (ctx) => {
     ? `@${ctx.from.username}`
     : ctx.from?.first_name || "there";
   ctx.reply(
-    `Hello ${username}!\nThis bot allows you to view cards and score from all 4 SubOGs on your respective OG via text messages.\n${helpText}`
+    `Hello ${username}!\nThis bot allows you to view cards from all 4 SubOGs on your respective OG via text messages.\n${helpText}`
   );
 });
 
@@ -59,11 +59,9 @@ bot.command("view", async (ctx) => {
             .map((card, i) => `${i + 1}. ${card.toString()}`)
             .join("\n")
         : "No cards assigned";
-    const score = subOG.score ?? 0;
     replyText +=
       `\nSubOG ${idx + 1} (${subOG.subOGName}):\n` +
-      `Cards(${subOG.cards.length}):\n${cardList}\n` +
-      `Score: ${score}\n`;
+      `Cards(${subOG.cards.length}):\n${cardList}\n`;
   });
   return ctx.reply(replyText);
 });

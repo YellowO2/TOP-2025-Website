@@ -24,14 +24,12 @@ export async function GET() {
         cardCount: subOG.cards.length,
         lastCardEarnedAt: subOG.lastCardEarnedAt,
         cards: subOG.cards,
-        score: subOG.score,
       })),
     })),
     leaderboard: sortSubOGsByCardCount(getAllSubOGs()).map((subOG) => ({
       name: subOG.subOGName,
       cardCount: subOG.cards.length,
       lastCardEarnedAt: subOG.lastCardEarnedAt,
-      score: subOG.score,
     })),
   };
 
