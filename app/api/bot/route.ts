@@ -22,34 +22,35 @@ const bot = new Bot(token);
 
 // check if the command is from the admin chat
 async function isUserAdmin(ctx: Context): Promise<boolean> {
-  const adminChatIdString = process.env.ADMIN_CHAT_ID;
-  if (!adminChatIdString) {
-    console.error("Error: ADMIN_CHAT_ID environment variable is not set.");
-    if (ctx.chat) {
-      await ctx.reply(
-        "This bot is not configured for access control. Please configure it."
-      );
-    }
-    return false;
-  }
+  // TODO: UNCOMEMENT AFTER TESTING
+  // const adminChatIdString = process.env.ADMIN_CHAT_ID;
+  // if (!adminChatIdString) {
+  //   console.error("Error: ADMIN_CHAT_ID environment variable is not set.");
+  //   if (ctx.chat) {
+  //     await ctx.reply(
+  //       "This bot is not configured for access control. Please configure it."
+  //     );
+  //   }
+  //   return false;
+  // }
 
-  const adminChatId = parseInt(adminChatIdString);
+  // const adminChatId = parseInt(adminChatIdString);
 
-  if (!ctx.chat) {
-    console.warn("Denied access. Please use the admin chat.");
-    return false;
-  }
+  // if (!ctx.chat) {
+  //   console.warn("Denied access. Please use the admin chat.");
+  //   return false;
+  // }
 
-  if (ctx.chat.id !== adminChatId) {
-    console.log(
-      `Command from user ${ctx.from?.id || "unknown"} in chat ${
-        ctx.chat.id
-      } (type: ${
-        ctx.chat.type
-      }). Expected admin chat ${adminChatId}. Denying access.`
-    );
-    return false;
-  }
+  // if (ctx.chat.id !== adminChatId) {
+  //   console.log(
+  //     `Command from user ${ctx.from?.id || "unknown"} in chat ${
+  //       ctx.chat.id
+  //     } (type: ${
+  //       ctx.chat.type
+  //     }). Expected admin chat ${adminChatId}. Denying access.`
+  //   );
+  //   return false;
+  // }
   return true;
 }
 

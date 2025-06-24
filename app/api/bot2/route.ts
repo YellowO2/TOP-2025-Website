@@ -70,4 +70,5 @@ bot.command("chatid", (ctx) => {
   ctx.reply(`This chat's ID is: ${ctx.chat.id}`);
 });
 
-export const POST = webhookCallback(bot, "std/http");
+// export const POST = webhookCallback(bot, "std/http");
+// TODO: UNCOMMENT AFTER TESTING
