@@ -1,10 +1,9 @@
 import { NextResponse } from "next/server";
-// import { PokerCard } from '../../models/PokerCard';
 import {
   getAllOGs,
   getAllSubOGs,
-  assignCardToSubOG,
-  sortSubOGsByCardCount,
+  assignItemToSubOG,
+  sortSubOGsByItemCount,
   initializeData,
   isDataInitialized,
 } from "../../lib/database";
@@ -18,18 +17,17 @@ export async function GET() {
     ogs: getAllOGs().map((og) => ({
       name: og.name,
       title: og.title,
-      // totalCards: og.totalCards,
       subOGs: og.subOGs.map((subOG) => ({
         name: subOG.subOGName,
-        cardCount: subOG.cards.length,
-        lastCardEarnedAt: subOG.lastCardEarnedAt,
-        cards: subOG.cards,
+        itemCount: subOG.items.length,
+        lastItemEarnedAt: subOG.lastItemEarnedAt,
+        items: subOG.items,
       })),
     })),
-    leaderboard: sortSubOGsByCardCount(getAllSubOGs()).map((subOG) => ({
+    leaderboard: sortSubOGsByItemCount(getAllSubOGs()).map((subOG) => ({
       name: subOG.subOGName,
-      cardCount: subOG.cards.length,
-      lastCardEarnedAt: subOG.lastCardEarnedAt,
+      itemCount: subOG.items.length,
+      lastItemEarnedAt: subOG.lastItemEarnedAt,
     })),
   };
 
@@ -39,16 +37,16 @@ export async function GET() {
 // Route purely for testing purposes. Actual modification of OG uses the bot.
 export async function POST(request: Request) {
   const body = await request.json();
-  const { subOGName, card } = body;
+  const { subOGName, item } = body;
 
-  if (!subOGName || !card) {
+  if (!subOGName || !item) {
     return NextResponse.json(
-      { error: "Missing required fields" },
+      { error: "Missing required fields: subOGName and item" },
       { status: 400 }
     );
   }
 
-  await assignCardToSubOG(subOGName, card);
+  await assignItemToSubOG(subOGName, item);
 
   return NextResponse.json({ success: true });
 }

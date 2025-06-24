@@ -1,6 +1,6 @@
 // This file defines some code to save and load the OG data
 import { OG, initializeAllOG, OGNames, SubOG } from "../models/OG";
-import { PokerCard } from "../models/PokerCard";
+import { HungerGamesItem } from "../models/HungerGamesItem";
 
 const API_KEY =
   "$2a$10$h1KvfzfEHGZiWndZyItuauBMpkSGUpJcHVD/" + process.env.JSONBIN_API_KEY;
@@ -41,8 +41,8 @@ export async function loadOGData(): Promise<OG[]> {
 // Interface for serialized data
 interface SerializedSubOG {
   subOGName: string;
-  cards: PokerCard[];
-  lastCardEarnedAt: string;
+  items: HungerGamesItem[];
+  lastItemEarnedAt: string;
 }
 
 interface SerializedOG {
@@ -59,8 +59,8 @@ function serializeOGs(ogs: OG[]): SerializedOG[] {
     title: og.title,
     subOGs: og.subOGs.map((subOG) => ({
       subOGName: subOG.subOGName,
-      cards: subOG.cards,
-      lastCardEarnedAt: subOG.lastCardEarnedAt?.toISOString() || "",
+      items: subOG.items,
+      lastItemEarnedAt: subOG.lastItemEarnedAt?.toISOString() || "",
     })),
   }));
 }
@@ -75,12 +75,16 @@ function deserializeOGs(data: SerializedOG[]): OG[] {
       const subOG = new SubOG(serializedSubOG.subOGName);
 
       // Load stored data
-      serializedSubOG.cards.forEach((card) => {
-        subOG.addCard(card);
+      serializedSubOG.items.forEach((item) => {
+        subOG.addItem(item);
       });
 
-      if (serializedSubOG.lastCardEarnedAt !== "") {
-        subOG.lastCardEarnedAt = new Date(serializedSubOG.lastCardEarnedAt);
+      // Handle timestamps
+      if (
+        serializedSubOG.lastItemEarnedAt &&
+        serializedSubOG.lastItemEarnedAt !== ""
+      ) {
+        subOG.lastItemEarnedAt = new Date(serializedSubOG.lastItemEarnedAt);
       }
 
       // Add the SubOG to the OG

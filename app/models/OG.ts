@@ -1,4 +1,4 @@
-import { PokerCard } from "./PokerCard";
+import { HungerGamesItem } from "./HungerGamesItem";
 
 export enum OGNames {
   District1 = "District 1",
@@ -34,25 +34,25 @@ export const OG_TITLES: Record<OGNames, string> = {
 };
 
 export class SubOG {
-  private _cards: PokerCard[] = [];
-  public lastCardEarnedAt: Date | null = null;
+  private _items: HungerGamesItem[] = [];
+  public lastItemEarnedAt: Date | null = null;
 
   constructor(public readonly subOGName: string) {}
 
-  // Card methods
-  get cards(): PokerCard[] {
-    return [...this._cards];
+  // Item methods
+  get items(): HungerGamesItem[] {
+    return [...this._items];
   }
 
-  addCard(card: PokerCard) {
-    this._cards.push(card);
-    this.lastCardEarnedAt = new Date();
+  addItem(item: HungerGamesItem) {
+    this._items.push(item);
+    this.lastItemEarnedAt = new Date();
   }
 
-  removeCard(card: PokerCard) {
-    const index = this._cards.findIndex((c) => c === card);
+  removeItem(item: HungerGamesItem) {
+    const index = this._items.findIndex((i) => i === item);
     if (index !== -1) {
-      this._cards.splice(index, 1);
+      this._items.splice(index, 1);
     }
   }
 }

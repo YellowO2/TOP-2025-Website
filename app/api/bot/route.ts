@@ -3,14 +3,13 @@ export const fetchCache = "force-no-store";
 
 import { Bot, webhookCallback, Context } from "grammy";
 import {
-  assignCardToSubOG,
-  removeCardFromSubOG,
+  assignItemToSubOG,
+  removeItemFromSubOG,
   getAllOGs,
   isDataInitialized,
   initializeData,
 } from "../../lib/database";
 import { SubOG } from "@/app/models/OG";
-import { PokerCard } from "@/app/models/PokerCard";
 import { validateInputs, validateIndices } from "./input_validation";
 
 const token = process.env.TELEGRAM_BOT_TOKEN || "<TELEGRAM BOT1 TOKEN>";
@@ -59,21 +58,26 @@ if (!isDataInitialized()) initializeData();
 
 const helpText = `
 Available commands:
-/add [district] [sub-district] [card] - Add a card to a SubOG
-/remove [district] [sub-district] [card] - Remove a card from a SubOG
-/view [district] [sub-district] - View cards of a SubOG
+/add [og] [sub-og] [item] - Add an item to a Sub-og
+/remove [og] [sub-og] [item] - Remove an item from a Sub-og
+/view [og] [sub-og] - View items of a Sub-og
 
 Format:
-- district: 1-13 (1=District 1, 2=District 2, ..., 13=District 13)
-- sub-district: 1-4
-- card: [suit][rank] (e.g., c2 for 2 of Clubs)
-- Suits: s(Spades), h(Hearts), d(Diamonds), c(Clubs)
-- Rank: 1-13 (1=Ace, 11=Jack, 12=Queen, 13=King)
+- og: 1-13
+- sub-og: 1-4
+- item: 1-13 or item name
+
+Available Items:
+1. Food        2. Water       3. Weapons     4. Shelter
+5. Clothing    6. Medicine    7. Alliances   8. Camouflage
+9. Sponsorships 10. Technology 11. Information 12. Traps
+13. Fire
 
 Examples:
-/add 1 1 c2 - Adds 2 of Clubs to first Sub-District of District 1
-/remove 1 1 c2 - Removes 2 of Clubs from first Sub-District of District 1
-/view 1 1 - Views cards in first Sub-District of District 1
+We can use index numbers or item names:
+/add 1 1 1 or /add 1 1 food - Adds Food to first Sub-og of og 1
+/remove 1 1 weapons or /remove 1 1 3 - Removes Weapons from first Sub-og of og 1
+/view 1 1 or /view 1 food - Views items in first Sub-og of og 1
 `;
 
 // Bot commands
@@ -98,7 +102,7 @@ bot.command("start", async (ctx) => {
     ? `@${ctx.from.username}`
     : ctx.from?.first_name || "there";
   ctx.reply(
-    `Hello ${username}!\nThis bot allows you to add or remove cards from SubOGs via text messages.\n${helpText}`
+    `Hello ${username}!\nThis bot allows you to manage items for OGs via text messages.\n${helpText}`
   );
 });
 
@@ -115,12 +119,12 @@ bot.command("add", async (ctx) => {
   const args = ctx.message.text.split(" ").slice(1);
   if (args.length !== 3) {
     return ctx.reply(
-      "Invalid format. Use: /add [og 1-13] [subog 1-4] [card notation]"
+      "Invalid format. Use: /add [district 1-13] [sub-district 1-4] [item]"
     );
   }
 
-  const [ogIndex, subOGIndex, cardNotation] = args;
-  const validation = validateInputs(ogIndex, subOGIndex, cardNotation);
+  const [ogIndex, subOGIndex, itemInput] = args;
+  const validation = validateInputs(ogIndex, subOGIndex, itemInput);
 
   if (!validation.isValid) {
     return ctx.reply(validation.error!);
@@ -129,26 +133,23 @@ bot.command("add", async (ctx) => {
   const subOG: SubOG =
     getAllOGs()[parseInt(ogIndex) - 1].subOGs[parseInt(subOGIndex) - 1];
   if (!subOG) {
-    return ctx.reply("SubOG not found");
+    return ctx.reply("Sub-District not found");
   }
 
   try {
-    if (subOG.cards && subOG.cards.includes(validation.card! as PokerCard)) {
+    if (subOG.items && subOG.items.includes(validation.item!)) {
       return ctx.reply(
-        `SubOG ${subOG.subOGName} already has the card ${validation.card}.`
+        `Sub-District ${subOG.subOGName} already has ${validation.item}.`
       );
     }
 
-    const success = await assignCardToSubOG(
-      subOG.subOGName,
-      validation.card! as PokerCard
-    );
+    const success = await assignItemToSubOG(subOG.subOGName, validation.item!);
     if (success) {
       await ctx.reply(
-        `Successfully added ${validation.card} to ${subOG.subOGName}.`
+        `:) Successfully added ${validation.item} to ${subOG.subOGName}`
       );
     } else {
-      await ctx.reply("Failed to add card.");
+      await ctx.reply("Failed to add item :(");
     }
   } catch (error) {
     await ctx.reply(
@@ -170,12 +171,12 @@ bot.command("remove", async (ctx) => {
   const args = ctx.message.text.split(" ").slice(1);
   if (args.length !== 3) {
     return ctx.reply(
-      "Invalid format. Use: /remove [og 1-13] [subog 1-4] [card notation]"
+      "Invalid format. Use: /remove [district 1-13] [sub-district 1-4] [item]"
     );
   }
 
-  const [ogIndex, subOGIndex, cardNotation] = args;
-  const validation = validateInputs(ogIndex, subOGIndex, cardNotation);
+  const [ogIndex, subOGIndex, itemInput] = args;
+  const validation = validateInputs(ogIndex, subOGIndex, itemInput);
 
   if (!validation.isValid) {
     return ctx.reply(validation.error!);
@@ -184,20 +185,20 @@ bot.command("remove", async (ctx) => {
   const subOG: SubOG =
     getAllOGs()[parseInt(ogIndex) - 1].subOGs[parseInt(subOGIndex) - 1];
   if (!subOG) {
-    return ctx.reply("SubOG not found");
+    return ctx.reply("Sub-District not found");
   }
 
   try {
-    const success = await removeCardFromSubOG(
+    const success = await removeItemFromSubOG(
       subOG.subOGName,
-      validation.card! as PokerCard
+      validation.item!
     );
     if (success) {
       await ctx.reply(
-        `Successfully removed ${validation.card} from ${subOG.subOGName}`
+        `🗑️ Successfully removed ${validation.item} from ${subOG.subOGName}`
       );
     } else {
-      await ctx.reply("Failed to remove card. Card or SubOG not found.");
+      await ctx.reply("Failed to remove item. Item or Sub-District not found.");
     }
   } catch (error) {
     await ctx.reply(
@@ -219,7 +220,9 @@ bot.command("view", async (ctx) => {
 
   const args = ctx.message.text.split(" ").slice(1);
   if (args.length !== 2) {
-    return ctx.reply("Invalid format. Use: /view [og 1-13] [subog 1-4]");
+    return ctx.reply(
+      "Invalid format. Use: /view [district 1-13] [sub-district 1-4]"
+    );
   }
 
   const [ogIndex, subOGIndex] = args;
@@ -234,23 +237,21 @@ bot.command("view", async (ctx) => {
   const ogs = getAllOGs();
   const selectedOG = ogs[ogIndexNum - 1];
   if (!selectedOG) {
-    return ctx.reply("OG not found");
+    return ctx.reply("District not found");
   }
 
   const subOG: SubOG = selectedOG.subOGs[subOGIndexNum - 1];
   if (!subOG) {
-    return ctx.reply("SubOG not found");
+    return ctx.reply("Sub-District not found");
   }
 
-  const cardList =
-    subOG.cards.length > 0
-      ? subOG.cards
-          .map((card, index) => `${index + 1}. ${card.toString()}`)
-          .join("\n")
-      : "No cards assigned";
+  const itemList =
+    subOG.items.length > 0
+      ? subOG.items.map((item, index) => `${index + 1}. ${item}`).join("\n")
+      : "No items assigned";
 
   await ctx.reply(
-    `${subOG.subOGName} \n` + `Cards(${subOG.cards.length}):\n ${cardList}\n`
+    `${subOG.subOGName} \n` + `Items (${subOG.items.length}):\n${itemList}\n`
   );
 });
 
