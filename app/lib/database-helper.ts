@@ -41,7 +41,7 @@ export async function loadOGData(): Promise<OG[]> {
 // Interface for serialized data
 interface SerializedSubOG {
   subOGName: string;
-  items: HungerGamesItem[];
+  items: { [key: string]: number };
   lastItemEarnedAt: string;
 }
 
@@ -57,11 +57,17 @@ function serializeOGs(ogs: OG[]): SerializedOG[] {
   return ogs.map((og) => ({
     name: og.name,
     title: og.title,
-    subOGs: og.subOGs.map((subOG) => ({
-      subOGName: subOG.subOGName,
-      items: subOG.items,
-      lastItemEarnedAt: subOG.lastItemEarnedAt?.toISOString() || "",
-    })),
+    subOGs: og.subOGs.map((subOG) => {
+      const itemsObject: { [key: string]: number } = {};
+      for (const [item, count] of subOG.items.entries()) {
+        itemsObject[item] = count;
+      }
+      return {
+        subOGName: subOG.subOGName,
+        items: itemsObject,
+        lastItemEarnedAt: subOG.lastItemEarnedAt?.toISOString() || "",
+      };
+    }),
   }));
 }
 
@@ -69,15 +75,20 @@ function deserializeOGs(data: SerializedOG[]): OG[] {
   console.log("deserializeOGs", data);
   return data.map((serializedOG) => {
     const og = new OG(serializedOG.name as OGNames, serializedOG.title);
+    og.subOGs = []; // Clear default sub-OGs to avoid duplication
 
     // Reconstruct SubOGs and assign them to the OG
     serializedOG.subOGs.forEach((serializedSubOG) => {
       const subOG = new SubOG(serializedSubOG.subOGName);
 
       // Load stored data
-      serializedSubOG.items.forEach((item) => {
-        subOG.addItem(item);
-      });
+      const itemsMap = new Map<HungerGamesItem, number>();
+      if (serializedSubOG.items) {
+        for (const [item, count] of Object.entries(serializedSubOG.items)) {
+          itemsMap.set(item as HungerGamesItem, count);
+        }
+      }
+      subOG.setItems(itemsMap);
 
       // Handle timestamps
       if (

@@ -51,20 +51,22 @@ bot.command("view", async (ctx) => {
     return ctx.reply("OG not found for this group.");
   }
 
-  let replyText = `Items for OG${mappedOGIndex}:
-`;
+  let replyText = `Items for OG${mappedOGIndex}:\n`;
   selectedOG.subOGs.forEach((subOG, idx) => {
-    const itemList =
-      subOG.items.length > 0
-        ? subOG.items.map((item, i) => `${i + 1}. ${item}`).join("\n")
-        : "No items assigned";
-    replyText +=
-      `
-SubOG ${idx + 1} (${subOG.subOGName}):
-` +
-      `Items(${subOG.items.length}):
-${itemList}
-`;
+    const items = subOG.items;
+    let itemList = "";
+    if (items.size > 0) {
+      let index = 1;
+      for (const [item, count] of items.entries()) {
+        itemList += `${index}. ${item} (x${count})\n`;
+        index++;
+      }
+    } else {
+      itemList = "No items assigned";
+    }
+    replyText += `\nSubOG ${idx + 1} (${subOG.subOGName}):\nItems(${
+      subOG.totalItemCount
+    }):\n${itemList}`;
   });
   return ctx.reply(replyText);
 });
@@ -73,5 +75,4 @@ bot.command("chatid", (ctx) => {
   ctx.reply(`This chat's ID is: ${ctx.chat.id}`);
 });
 
-// export const POST = webhookCallback(bot, "std/http");
-// TODO: UNCOMMENT AFTER TESTING
+export const POST = webhookCallback(bot, "std/http");

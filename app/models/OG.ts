@@ -34,26 +34,47 @@ export const OG_TITLES: Record<OGNames, string> = {
 };
 
 export class SubOG {
-  private _items: HungerGamesItem[] = [];
+  private _items: Map<HungerGamesItem, number> = new Map();
   public lastItemEarnedAt: Date | null = null;
 
   constructor(public readonly subOGName: string) {}
 
   // Item methods
-  get items(): HungerGamesItem[] {
-    return [...this._items];
+  get items(): Map<HungerGamesItem, number> {
+    return new Map(this._items);
+  }
+
+  get totalItemCount(): number {
+    let count = 0;
+    for (const c of this._items.values()) {
+      count += c;
+    }
+    return count;
   }
 
   addItem(item: HungerGamesItem) {
-    this._items.push(item);
+    const currentCount = this._items.get(item) || 0;
+    this._items.set(item, currentCount + 1);
     this.lastItemEarnedAt = new Date();
   }
 
   removeItem(item: HungerGamesItem) {
-    const index = this._items.findIndex((i) => i === item);
-    if (index !== -1) {
-      this._items.splice(index, 1);
+    const currentCount = this._items.get(item);
+    if (currentCount && currentCount > 0) {
+      this._items.set(item, currentCount - 1);
+      if (this._items.get(item) === 0) {
+        this._items.delete(item);
+      }
     }
+  }
+
+  hasItem(item: HungerGamesItem): boolean {
+    return (this._items.get(item) || 0) > 0;
+  }
+
+  // For deserialization
+  setItems(items: Map<HungerGamesItem, number>) {
+    this._items = items;
   }
 }
 

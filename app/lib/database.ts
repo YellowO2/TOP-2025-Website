@@ -35,7 +35,7 @@ export function findSubOG(subOGName: string): SubOG | undefined {
 
 // ----------- Sorting -----------
 export function sortSubOGsByItemCount(subOGs: SubOG[]): SubOG[] {
-  return [...subOGs].sort((a, b) => b.items.length - a.items.length);
+  return [...subOGs].sort((a, b) => b.totalItemCount - a.totalItemCount);
 }
 
 // ----------- Item Management -----------

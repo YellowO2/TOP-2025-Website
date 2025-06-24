@@ -21,39 +21,38 @@ const bot = new Bot(token);
 
 // check if the command is from the admin chat
 async function isUserAdmin(ctx: Context): Promise<boolean> {
-  // TODO: UNCOMEMENT AFTER TESTING
-  // const adminChatIdString = process.env.ADMIN_CHAT_ID;
-  // if (!adminChatIdString) {
-  //   console.error("Error: ADMIN_CHAT_ID environment variable is not set.");
-  //   if (ctx.chat) {
-  //     await ctx.reply(
-  //       "This bot is not configured for access control. Please configure it."
-  //     );
-  //   }
-  //   return false;
-  // }
+  const adminChatIdString = process.env.ADMIN_CHAT_ID;
+  if (!adminChatIdString) {
+    console.error("Error: ADMIN_CHAT_ID environment variable is not set.");
+    if (ctx.chat) {
+      await ctx.reply(
+        "This bot is not configured for access control. Please configure it."
+      );
+    }
+    return false;
+  }
 
-  // const adminChatId = parseInt(adminChatIdString);
+  const adminChatId = parseInt(adminChatIdString);
 
-  // if (!ctx.chat) {
-  //   console.warn("Denied access. Please use the admin chat.");
-  //   return false;
-  // }
+  if (!ctx.chat) {
+    console.warn("Denied access. Please use the admin chat.");
+    return false;
+  }
 
-  // if (ctx.chat.id !== adminChatId) {
-  //   console.log(
-  //     `Command from user ${ctx.from?.id || "unknown"} in chat ${
-  //       ctx.chat.id
-  //     } (type: ${
-  //       ctx.chat.type
-  //     }). Expected admin chat ${adminChatId}. Denying access.`
-  //   );
-  //   return false;
-  // }
+  if (ctx.chat.id !== adminChatId) {
+    console.log(
+      `Command from user ${ctx.from?.id || "unknown"} in chat ${
+        ctx.chat.id
+      } (type: ${
+        ctx.chat.type
+      }). Expected admin chat ${adminChatId}. Denying access.`
+    );
+    return false;
+  }
   return true;
 }
 
-// Check if OG data initialised
+// check if OG data initialised
 if (!isDataInitialized()) initializeData();
 
 const helpText = `
@@ -137,12 +136,6 @@ bot.command("add", async (ctx) => {
   }
 
   try {
-    if (subOG.items && subOG.items.includes(validation.item!)) {
-      return ctx.reply(
-        `Sub-District ${subOG.subOGName} already has ${validation.item}.`
-      );
-    }
-
     const success = await assignItemToSubOG(subOG.subOGName, validation.item!);
     if (success) {
       await ctx.reply(
@@ -245,13 +238,20 @@ bot.command("view", async (ctx) => {
     return ctx.reply("Sub-District not found");
   }
 
-  const itemList =
-    subOG.items.length > 0
-      ? subOG.items.map((item, index) => `${index + 1}. ${item}`).join("\n")
-      : "No items assigned";
+  const items = subOG.items;
+  let itemList = "";
+  if (items.size > 0) {
+    let index = 1;
+    for (const [item, count] of items.entries()) {
+      itemList += `${index}. ${item} (x${count})\n`;
+      index++;
+    }
+  } else {
+    itemList = "No items assigned";
+  }
 
   await ctx.reply(
-    `${subOG.subOGName} \n` + `Items (${subOG.items.length}):\n${itemList}\n`
+    `${subOG.subOGName} \n` + `Items (${subOG.totalItemCount}):\n${itemList}\n`
   );
 });
 

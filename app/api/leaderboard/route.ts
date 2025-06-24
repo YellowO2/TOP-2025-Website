@@ -19,14 +19,14 @@ export async function GET() {
       title: og.title,
       subOGs: og.subOGs.map((subOG) => ({
         name: subOG.subOGName,
-        itemCount: subOG.items.length,
+        itemCount: subOG.totalItemCount,
         lastItemEarnedAt: subOG.lastItemEarnedAt,
-        items: subOG.items,
+        items: Object.fromEntries(subOG.items),
       })),
     })),
     leaderboard: sortSubOGsByItemCount(getAllSubOGs()).map((subOG) => ({
       name: subOG.subOGName,
-      itemCount: subOG.items.length,
+      itemCount: subOG.totalItemCount,
       lastItemEarnedAt: subOG.lastItemEarnedAt,
     })),
   };
