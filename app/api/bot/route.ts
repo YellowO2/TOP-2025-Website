@@ -21,34 +21,34 @@ const bot = new Bot(token);
 
 // check if the command is from the admin chat
 async function isUserAdmin(ctx: Context): Promise<boolean> {
-  const adminChatIdString = process.env.ADMIN_CHAT_ID;
-  if (!adminChatIdString) {
-    console.error("Error: ADMIN_CHAT_ID environment variable is not set.");
-    if (ctx.chat) {
-      await ctx.reply(
-        "This bot is not configured for access control. Please configure it."
-      );
-    }
-    return false;
-  }
+  // const adminChatIdString = process.env.ADMIN_CHAT_ID;
+  // if (!adminChatIdString) {
+  //   console.error("Error: ADMIN_CHAT_ID environment variable is not set.");
+  //   if (ctx.chat) {
+  //     await ctx.reply(
+  //       "This bot is not configured for access control. Please configure it."
+  //     );
+  //   }
+  //   return false;
+  // }
 
-  const adminChatId = parseInt(adminChatIdString);
+  // const adminChatId = parseInt(adminChatIdString);
 
-  if (!ctx.chat) {
-    console.warn("Denied access. Please use the admin chat.");
-    return false;
-  }
+  // if (!ctx.chat) {
+  //   console.warn("Denied access. Please use the admin chat.");
+  //   return false;
+  // }
 
-  if (ctx.chat.id !== adminChatId) {
-    console.log(
-      `Command from user ${ctx.from?.id || "unknown"} in chat ${
-        ctx.chat.id
-      } (type: ${
-        ctx.chat.type
-      }). Expected admin chat ${adminChatId}. Denying access.`
-    );
-    return false;
-  }
+  // if (ctx.chat.id !== adminChatId) {
+  //   console.log(
+  //     `Command from user ${ctx.from?.id || "unknown"} in chat ${
+  //       ctx.chat.id
+  //     } (type: ${
+  //       ctx.chat.type
+  //     }). Expected admin chat ${adminChatId}. Denying access.`
+  //   );
+  //   return false;
+  // }
   return true;
 }
 
@@ -182,6 +182,12 @@ bot.command("remove", async (ctx) => {
   }
 
   try {
+    // Check if the item exists and has count > 0 before attempting removal
+    if (!subOG.hasItem(validation.item!)) {
+      return ctx.reply(
+        `Nothing to remove: ${subOG.subOGName} does not have any ${validation.item}.`
+      );
+    }
     const success = await removeItemFromSubOG(
       subOG.subOGName,
       validation.item!
