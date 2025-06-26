@@ -21,7 +21,13 @@ const bot = new Bot(token);
 
 // check if the command is from the admin chat
 async function isUserAdmin(ctx: Context): Promise<boolean> {
-  const allowedUsernames = ["vishesh2005", "yx_1234"];
+  const allowedUsernames = [
+    "vishesh2005",
+    "yx_1234",
+    "sabb_exe",
+    "king_donkey_kong",
+    "Ishiii_shukla",
+  ];
   const username = ctx.from?.username;
 
   if (username && allowedUsernames.includes(username)) {
