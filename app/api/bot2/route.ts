@@ -20,7 +20,7 @@ if (!isDataInitialized()) initializeData();
 
 const helpText = `
 Available commands:
-/view - View cards and score of all 4 SubOGs in your OG
+/view - View items of all 4 Sub-OGs in your OG
 `;
 
 // Bot commands
@@ -33,7 +33,7 @@ bot.command("start", (ctx) => {
     ? `@${ctx.from.username}`
     : ctx.from?.first_name || "there";
   ctx.reply(
-    `Hello ${username}!\nThis bot allows you to view cards and score from all 4 SubOGs on your respective OG via text messages.\n${helpText}`
+    `Hello ${username}!\n This bot allows you to view items from all 4 SubOGs in your respective OG.\n${helpText}`
   );
 });
 
@@ -51,19 +51,22 @@ bot.command("view", async (ctx) => {
     return ctx.reply("OG not found for this group.");
   }
 
-  let replyText = `Cards for OG${mappedOGIndex}:\n`;
+  let replyText = `Items for OG${mappedOGIndex}:\n`;
   selectedOG.subOGs.forEach((subOG, idx) => {
-    const cardList =
-      subOG.cards.length > 0
-        ? subOG.cards
-            .map((card, i) => `${i + 1}. ${card.toString()}`)
-            .join("\n")
-        : "No cards assigned";
-    const score = subOG.score ?? 0;
-    replyText +=
-      `\nSubOG ${idx + 1} (${subOG.subOGName}):\n` +
-      `Cards(${subOG.cards.length}):\n${cardList}\n` +
-      `Score: ${score}\n`;
+    const items = subOG.items;
+    let itemList = "";
+    if (items.size > 0) {
+      let index = 1;
+      for (const [item, count] of items.entries()) {
+        itemList += `${index}. ${item} (x${count})\n`;
+        index++;
+      }
+    } else {
+      itemList = "No items assigned";
+    }
+    replyText += `\nSubOG ${idx + 1} (${subOG.subOGName}):\nItems(${
+      subOG.totalItemCount
+    }):\n${itemList}`;
   });
   return ctx.reply(replyText);
 });
