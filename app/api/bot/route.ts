@@ -21,6 +21,13 @@ const bot = new Bot(token);
 
 // check if the command is from the admin chat
 async function isUserAdmin(ctx: Context): Promise<boolean> {
+  const allowedUsernames = ["vishesh2005", "yx_1234"];
+  const username = ctx.from?.username;
+
+  if (username && allowedUsernames.includes(username)) {
+    return true;
+  }
+
   const adminChatIdString = process.env.ADMIN_CHAT_ID;
   if (!adminChatIdString) {
     console.error("Error: ADMIN_CHAT_ID environment variable is not set.");
