@@ -1,24 +1,34 @@
-import Navbar from "@/components/Navbar";
+import type { Metadata } from "next";
 import "./globals.css";
+import Footer from "@/components/General/Footer";
+import Navbar from "@/components/General/Navbar";
+import Smooth from "@/components/General/Smooth";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "CCDS Top",
-  description: "Club website.",
+  description: "Official Website",
 };
 
-interface RootLayoutProps {
+export default function RootLayout({
+  children,
+}: Readonly<{
   children: React.ReactNode;
-}
-
-const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
+}>) {
   return (
     <html lang="en">
-      <body className="flex flex-col items-center justify-center">
-        <Navbar />
-        {children}
+      <body
+        className="antialiased"
+      >
+        <Smooth>
+          <div className="flex w-screen items-center justify-center">
+            <div className="flex flex-col max-w-[1350px] border-l border-r border-white/10 md:w-[85vw] overflow-hidden">
+              <Navbar />
+              {children}
+              <Footer />
+            </div>
+          </div>
+        </Smooth>
       </body>
     </html>
   );
-};
-
-export default RootLayout;
+}

@@ -1,104 +1,112 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-/* @font-face {
-  font-family: "jsMath-cmr10";
-  src: url("/fonts/jsMath-cmr10.ttf");
+:root {
+  --background: #ffffff;
+  --foreground: #111111;
 }
 
 @font-face {
-  font-family: "Poppins-Regular";
-  src: url("/fonts/Poppins-Regular.ttf");
-} */
-
-@font-face {
-  font-family: "HomeVideoBold";
-  src: url("/fonts/HomeVideoBold.ttf");
+  font-family: 'Montserrat';
+  src: url('/fonts/Montserrat-VariableFont_wght.ttf');
 }
 
 @font-face {
-  font-family: "HomeVideo";
+  font-family: 'HomeVideo';
   src: url('/fonts/HomeVideo.ttf');
 }
 
-@layer base{
-  body{
-    @apply bg-black text-text text-xs font-home
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter.ttf');
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #000000;
+    --foreground: #ededed;
   }
-  
-  /* h1{
-    @apply text-4xl md:text-[64px] font-poppinsmed uppercase
-  } */
 }
 
-.navItem{
-  @apply font-home text-base text-white hover:text-red-500 tracking-widest transition ease-in-out duration-200
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Inter", sans-serif;
+  @apply text-sm
 }
 
-.buttonMain{
-  @apply text-black cursor-pointer bg-white items-center pl-4 text-sm pr-2 py-2 z-10 hover:bg-black hover:text-white border border-white transition ease-in-out duration-300
+h1 {
+  @apply text-4xl lg:text-5xl
 }
 
-.buttonMain2{
-  @apply hover:text-black cursor-pointer hover:bg-white items-center pl-4 text-sm pr-2 py-1 z-10 bg-black text-white border border-white transition ease-in-out duration-300
+h2 {
+  @apply text-2xl lg:text-3xl
 }
 
-.fade-mask {
-  -webkit-mask-image: linear-gradient(to right, transparent, white 5%, white 95%, transparent);
-  mask-image: linear-gradient(to right, transparent, white 5%, white 95%, transparent);
+.regularLinkRed {
+  @apply text-base md:text-sm px-1 hover:font-bold text-orange-400 transition ease-in-out duration-300
 }
 
-.regularLinkRed{
-  @apply text-base md:text-sm px-1 border border-white rounded-md hover:font-homebold text-red-600 transition ease-in-out duration-300
+.regularLink {
+  @apply text-base md:text-sm px-1 hover:font-bold transition ease-in-out duration-300
 }
 
-.regularLink{
-  @apply text-sm px-1 border border-white rounded-md hover:font-homebold transition ease-in-out duration-300
+.socialLink {
+  @apply text-base md:text-sm px-1 underline hover:text-orange-400 transition duration-300 ease-in-out
 }
 
-.socialLink{
-  @apply text-sm px-1 underline hover:text-red-600 transition duration-300 ease-in-out
+.menuDivider {
+  @apply flex border-t border-white/5 h-0 w-full
 }
 
-/* .button1{
-  @apply uppercase text-background bg-text text-sm font-poppins pl-4 pr-3 py-2
+.navMenuContainer {
+  @apply uppercase tracking-widest text-xs py-2 rounded-full drop-shadow-2xl backdrop-blur-sm border-[0.1px] border-white/8
 }
 
-.title {
-  @apply font-jsMath text-[100px] leading-[43px] md:text-[200px] md:leading-[84px]
+.navDropdownMenuContainer {
+  @apply bg-black/70 backdrop-blur-sm text-xs rounded-3xl border-l-[0.1px] border-r-[0.1px] border-white/40
 }
 
-
-
-.sidebaritem{
-  @apply font-poppinsmed text-sm
-} */
-
-/* .display{
-  @apply h-full w-[100vw] relative flex gap-[2vw] p-[2vw] overflow-hidden;
+.navMainItem {
+  @apply text-sm hover:opacity-75 duration-300 transition ease-in-out cursor-pointer font-medium
 }
 
-.column{
-  @apply relative h-[100vh] w-[25%] flex flex-col gap-[2vw];
+.navButton {
+  @apply bg-[#1a0f0f]/70 border uppercase tracking-widest text-[9px] border-[#3c302a]/80 px-4 py-2 rounded-full text-xs font-semibold hover:opacity-90 duration-200 transition ease-in-out cursor-pointer
 }
 
-.column:nth-of-type(1) {
-  @apply -top-[80%];
+.font-homevideo {
+  font-family: 'HomeVideo', monospace;
 }
 
-.column:nth-of-type(2) {
-  @apply -top-[95%];
+.font-inter {
+  font-family: 'Inter', monospace;
 }
 
-.column:nth-of-type(3) {
-  @apply -top-[115%];
+.navMenuItem {
+  @apply text-white px-3 tracking-tight pb-1 pt-[4px] rounded-full cursor-pointer duration-200 transition ease-in-out
 }
 
-.column:nth-of-type(4) {
-  @apply -top-[95%];
+.navDropdownMenuBox {
+  @apply flex flex-col text-xs justify-start h-full w-full p-7 gap-3
 }
 
-.column:nth-of-type(5) {
-  @apply -top-[80%];
-} */
+.navDropdownMenuItem {
+  @apply flex w-full gap-3 items-center text-[10px] uppercase tracking-widest font-medium text-white/70 hover:text-white duration-150 ease-in-out transition cursor-pointer
+}
+
+.navDropdownCaption {
+  @apply flex w-full text-xs font-medium uppercase text-white/50 mb-2
+}
+
+.navDropdownIcon {
+  @apply inline text-[#7b5f57]
+}
+
+.footerLink {
+  @apply flex flex-row gap-2 items-center tracking-tight opacity-60 hover:opacity-100 ease-in-out transition-all duration-300 text-xs
+}
