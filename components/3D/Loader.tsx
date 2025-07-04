@@ -41,7 +41,6 @@ export default function Loader({ onFinish }: LoaderProps) {
         cancelAnimationFrame(raf.current)
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [progress, displayed, onFinish, hasError])
 
   return (

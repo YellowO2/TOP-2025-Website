@@ -10,6 +10,7 @@ type LeaderboardRecordType = {
 
 function Leaderboard() {
     const [leaderboardData, setLeaderboardData] = useState<LeaderboardRecordType[]>([]);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [loading, setLoading] = useState(false);
     const day2 = true;
 

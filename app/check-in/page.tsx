@@ -36,7 +36,7 @@ export default function CheckInPage() {
         setMessage(data.error || "Check-in failed.");
       }
     } catch (error) {
-      setMessage("An error occurred. Please try again.");
+      setMessage("Error:" + (error instanceof Error ? error.message : "Unknown error"));
     } finally {
       setLoading(false);
     }

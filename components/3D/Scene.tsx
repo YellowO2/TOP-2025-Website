@@ -6,7 +6,6 @@ import ParticleMesh from './ParticleMesh'
 import Loader from './Loader'
 import { ErrorBoundary } from './ErrorBoundary'
 import { PerformanceMonitor } from '@react-three/drei'
-import { Perf } from 'r3f-perf'
 
 function ResponsiveCamera({ loading }: { loading: boolean }) {
   const { camera } = useThree()

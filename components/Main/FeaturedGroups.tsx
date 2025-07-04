@@ -4,6 +4,7 @@ import { GoChevronLeft, GoChevronRight } from 'react-icons/go';
 import OGCard from './OGCard';
 
 function FeaturedGroups() {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [maxOgs, setMaxOgs] = useState<number>(2);
     const [currOg, setCurrOg] = useState<number>(0);
     const containerRef = useRef<HTMLDivElement>(null);

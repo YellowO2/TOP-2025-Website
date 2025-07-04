@@ -19,35 +19,40 @@ const events = [
 
 function Schedule() {
     const { scrollYProgress } = useScroll();
+    const progressHeight = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
+    const eventTransforms = events.map((_, idx) => {
+        const threshold = idx / (events.length - 1);
+        return {
+            scale: useTransform(
+                scrollYProgress,
+                [threshold - 0.03, threshold, threshold + 0.03],
+                [1, 1.5, 1]
+            ),
+            bg: useTransform(
+                scrollYProgress,
+                [threshold - 0.03, threshold, threshold + 0.03],
+                ['#fff', '#fff', '#fff']
+            ),
+            threshold
+        };
+    });
 
     return (
         <div className='flex w-full py-32 justify-center px-24'>
-            {/* Progress Bar with Dots */}
             <div className='mr-32 my-12 flex-shrink-0 flex flex-col items-center relative'>
                 <div className='w-[1px] bg-white/15 h-full rounded-full absolute' />
                 <motion.div
                     className='w-[1px] bg-white rounded-full absolute origin-top'
-                    style={{ height: useTransform(scrollYProgress, [0, 1], ['0%', '100%']) }}
+                    style={{ height: progressHeight }}
                 />
-                {/* Dots */}
                 {events.map((_, idx) => {
-                    const threshold = idx / (events.length - 1);
-                    const scale = useTransform(
-                        scrollYProgress,
-                        [threshold - 0.03, threshold, threshold + 0.03],
-                        [1, 1.5, 1]
-                    );
-                    const bg = useTransform(
-                        scrollYProgress,
-                        [threshold - 0.03, threshold, threshold + 0.03],
-                        ['#fff', '#fff', '#fff']
-                    );
+                    const { scale, bg, threshold } = eventTransforms[idx];
                     return (
                         <motion.div
                             key={idx}
                             style={{
                                 position: 'absolute',
-                                top: `calc(${threshold * 100}% - 0.5rem)`, // half of 2rem (w-4/h-4)
+                                top: `calc(${threshold * 100}% - 0.5rem)`,
                                 left: '50%',
                                 x: '-50%',
                                 scale,
@@ -59,7 +64,6 @@ function Schedule() {
                 })}
             </div>
 
-            {/* Events List */}
             <div className='flex flex-col gap-20'>
                 {events.map((event, idx) => (
                     <div key={idx} className='flex flex-col items-start gap-2'>

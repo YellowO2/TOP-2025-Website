@@ -1,5 +1,4 @@
 import GameCard from "@/components/Game/GameCard"
-import Image from "next/image"
 
 function Games() {
     return (
