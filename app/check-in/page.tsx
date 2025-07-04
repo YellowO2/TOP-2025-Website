@@ -50,7 +50,7 @@ export default function CheckInPage() {
         <div className="flex w-full flex-col items-center justify-center gap-3 ">
           <BiKey className="flex" size={64} />
           <h2 className="flex font-homevideo font-bold">Check Into {room}</h2>
-          <p className="flex w-full text-center text-pretty text-xs px-8 mb-10">
+          <p className="flex w-full md:w-1/4 text-center text-pretty text-xs px-8 mb-10">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam eos debitis officia, cumque culpa.
           </p>
           <form

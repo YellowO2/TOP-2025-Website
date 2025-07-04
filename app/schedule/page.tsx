@@ -1,5 +1,5 @@
 'use client'
-import React, { useMemo } from 'react'
+import React from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 
 const events = [
@@ -15,57 +15,40 @@ const events = [
     { time: '04:00 PM', name: 'Q&A Session', description: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa.' },
     { time: '04:45 PM', name: 'Closing Remarks', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
     { time: '05:00 PM', name: 'Networking & Snacks', description: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' },
-]
+];
 
 function Schedule() {
     const { scrollYProgress } = useScroll();
     const progressHeight = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
 
-    // Pre-calculate all transforms using useMemo
-    const eventTransforms = useMemo(() => {
-        return events.map((_, idx) => {
-            const threshold = idx / (events.length - 1);
-            return {
-                scale: useTransform(
-                    scrollYProgress,
-                    [threshold - 0.03, threshold, threshold + 0.03],
-                    [1, 1.5, 1]
-                ),
-                bg: useTransform(
-                    scrollYProgress,
-                    [threshold - 0.03, threshold, threshold + 0.03],
-                    ['#fff', '#fff', '#fff']
-                ),
-                threshold
-            };
-        });
-    }, [scrollYProgress]);
+    // Create transforms for each event at the top level
+    const thresholds = events.map((_, idx) => idx / (events.length - 1));
+    const scales = thresholds.map(threshold =>
+        useTransform(scrollYProgress, [threshold - 0.03, threshold, threshold + 0.03], [1, 1.5, 1])
+    );
 
     return (
         <div className='flex w-full py-32 justify-center px-24'>
-            <div className='mr-32 my-12 flex-shrink-0 flex flex-col items-center relative'>
+            <div className='mr-12 md:mr-32 my-12 flex-shrink-0 flex flex-col items-center relative'>
                 <div className='w-[1px] bg-white/15 h-full rounded-full absolute' />
                 <motion.div
                     className='w-[1px] bg-white rounded-full absolute origin-top'
                     style={{ height: progressHeight }}
                 />
-                {events.map((_, idx) => {
-                    const { scale, bg, threshold } = eventTransforms[idx];
-                    return (
-                        <motion.div
-                            key={idx}
-                            style={{
-                                position: 'absolute',
-                                top: `calc(${threshold * 100}% - 0.5rem)`,
-                                left: '50%',
-                                x: '-50%',
-                                scale,
-                                background: bg,
-                            }}
-                            className="w-2 h-2 rounded-full shadow"
-                        />
-                    );
-                })}
+                {events.map((_, idx) => (
+                    <motion.div
+                        key={idx}
+                        style={{
+                            position: 'absolute',
+                            top: `calc(${thresholds[idx] * 100}% - 0.5rem)`,
+                            left: '50%',
+                            x: '-50%',
+                            scale: scales[idx],
+                            background: '#fff',
+                        }}
+                        className="w-2 h-2 rounded-full shadow"
+                    />
+                ))}
             </div>
 
             <div className='flex flex-col gap-20'>
@@ -78,7 +61,7 @@ function Schedule() {
                 ))}
             </div>
         </div>
-    )
+    );
 }
 
 export default Schedule
