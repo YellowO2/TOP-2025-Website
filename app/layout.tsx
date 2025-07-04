@@ -21,7 +21,7 @@ export default function RootLayout({
       >
         <Smooth>
           <div className="flex w-screen items-center justify-center">
-            <div className="flex flex-col max-w-[1350px] border-l border-r border-white/10 md:w-[85vw] overflow-hidden">
+            <div className="flex flex-col w-screen max-w-[1350px] border-l border-r border-white/10 md:w-[85vw] overflow-hidden">
               <Navbar />
               {children}
               <Footer />

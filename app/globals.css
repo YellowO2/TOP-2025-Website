@@ -110,3 +110,7 @@ h2 {
 .footerLink {
   @apply flex flex-row gap-2 items-center tracking-tight opacity-60 hover:opacity-100 ease-in-out transition-all duration-300 text-xs
 }
+
+.formSelect{
+  @apply appearance-none px-5 py-3 border border-white/10 outline-none rounded-lg w-full cursor-pointer
+}

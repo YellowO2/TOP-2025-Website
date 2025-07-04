@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { Suspense } from "react";
+import { GoChevronDown } from "react-icons/go";
+import { BiKey } from "react-icons/bi";
 
-function CheckInPage() {
+export default function CheckInPage() {
   const searchParams = useSearchParams();
   const room = searchParams.get("room");
 
@@ -34,7 +35,6 @@ function CheckInPage() {
       } else {
         setMessage(data.error || "Check-in failed.");
       }
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       setMessage("An error occurred. Please try again.");
     } finally {
@@ -43,35 +43,43 @@ function CheckInPage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-4">
+    <div className="flex flex-col w-full h-screen items-center justify-center px-12">
       {message ? (
         <p className="text-2xl text-center">{message}</p>
       ) : (
-        <>
-          <h1 className="text-2xl font-bold mb-4">Check-In for Room {room}</h1>
+        <div className="flex w-full flex-col items-center justify-center gap-3 ">
+          <BiKey className="flex" size={64} />
+          <h2 className="flex font-homevideo font-bold">Check Into {room}</h2>
+          <p className="flex w-full text-center text-pretty text-xs px-8 mb-10">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam eos debitis officia, cumque culpa.
+          </p>
           <form
             onSubmit={handleSubmit}
-            className="flex flex-col gap-4 w-full max-w-md"
+            className="flex flex-col gap-3 w-full md:w-2/5"
           >
-            <select
-              value={district}
-              onChange={(e) => setDistrict(e.target.value)}
-              className="p-2 border border-gray-300 rounded text-gray-700"
-              required
-            >
-              <option value="" disabled>
-                Select District
-              </option>
-              {districts.map((d) => (
-                <option key={d} value={d}>
-                  {d}
+            <div className="flex relative w-full">
+              <select
+                value={district}
+                onChange={(e) => setDistrict(e.target.value)}
+                className="formSelect font-homevideo"
+                required
+              >
+                <option value="" disabled>
+                  Select District
                 </option>
-              ))}
-            </select>
+                {districts.map((d) => (
+                  <option key={d} value={d}>
+                    {d}
+                  </option>
+                ))}
+              </select>
+              <GoChevronDown className="absolute top-4 right-4" />
+            </div>
+
             <select
               value={subOG}
               onChange={(e) => setSubOG(e.target.value)}
-              className="p-2 border border-gray-300 rounded text-gray-700"
+              className="formSelect font-homevideo"
               required
             >
               <option value="" disabled>
@@ -85,22 +93,14 @@ function CheckInPage() {
             </select>
             <button
               type="submit"
-              className="p-2 bg-blue-500 text-white rounded"
+              className="py-3 bg-white text-semibold text-black font-homevideo rounded-lg mt-4"
               disabled={loading}
             >
               {loading ? "Checking in..." : "Check In"}
             </button>
           </form>
-        </>
+        </div>
       )}
     </div>
-  );
-}
-
-export default function CheckInPageWrapper() {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <CheckInPage />
-    </Suspense>
   );
 }
