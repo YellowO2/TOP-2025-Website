@@ -44,7 +44,7 @@ function FAQs() {
     ];
 
     return (
-        <div className='flex relative items-center justify-center  w-full border-white/10 pb-48 flex-col'>
+        <div className='flex relative items-center justify-center  w-full border-white/10 pb-24 md:pb-48 flex-col'>
             <div className="flex w-full h-[300px] relative pointer-events-none">
                 <Image
                     src="/image.jpg"
@@ -55,7 +55,7 @@ function FAQs() {
                     style={{ objectPosition: 'center' }}
                 />
             </div>
-            <div className='flex flex-col  w-full transition-all ease-in-out duration-300 px-24'>
+            <div className='flex flex-col  w-full transition-all ease-in-out duration-300 px-12 md:px-24'>
 
                 <h1 className='flex mb-4 font-bold font-homevideo'>
                     FAQs

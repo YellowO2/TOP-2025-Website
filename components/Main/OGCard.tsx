@@ -10,7 +10,7 @@ function OGCard(
 ) {
     return (
         <div
-            className={`transition-all ease-in-out duration-300 h-full flex flex-col items-center justify-center gap-8 p-12 text-center`}
+            className={`transition-all ease-in-out duration-300 h-full flex flex-col items-center justify-center gap-8 md:p-12 text-center`}
             style={
                 { width: `${containerWidth}px` }
             }

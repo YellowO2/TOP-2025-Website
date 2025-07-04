@@ -56,7 +56,7 @@ function Footer() {
             </div>
 
             {/* bottom section */}
-            <div className='flex flex-col md:flex-row pt-6 justify-between items-center text-xs'>
+            <div className='flex flex-col md:flex-row pt-6 justify-between items-center text-xs  text-center'>
                 <div className='flex tracking-tight'>
                     <span className='opacity-60'>Website created by</span> <a href="https://www.linkedin.com/in/sabaxazad/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity ease-in-out duration-300 ml-1">Saba Azad</a>
                 </div>

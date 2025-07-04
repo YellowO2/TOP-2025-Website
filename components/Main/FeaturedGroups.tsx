@@ -36,7 +36,7 @@ function FeaturedGroups() {
         containerRef.current,
     ]);
     return (
-        <div className="flex relative w-full py-24 items-center justify-center gap-5 px-10 md:px-20">
+        <div className="flex relative w-full py-24 items-center justify-center gap-5 px-5 md:px-20">
             <div className='absolute grid grid-cols-4 grid-rows-1 divide-x divide-dashed divide-white/10 w-full h-full left-0 top-0 pointer-events-none'>
                 <div className='w-full h-full flex' />
                 <div className='w-full h-full flex' />

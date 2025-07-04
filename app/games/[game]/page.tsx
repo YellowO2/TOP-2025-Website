@@ -23,12 +23,12 @@ function GamePage() {
                     Sunday, 13 July
                 </div>
                 <div className="h-fit flex">
-                    <h1 className="font-homevideo font-bold tracking-tight">The First Game</h1>
+                    <h1 className="font-homevideo font-bold tracking-tight text-center">The First Game</h1>
                 </div>
                 <div className="flex md:w-1/2 text-center font-light">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </div>
-                <p className="flex text-pretty mt-8 text-base">
+                <p className="flex text-pretty mt-8 text-base ">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae nesciunt error harum magni in, excepturi voluptatem tempore veritatis quod distinctio sunt corporis! Similique in quasi tempore aperiam fugit, nisi impedit! Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae nesciunt error harum magni in, excepturi voluptatem tempore veritatis quod distinctio sunt corporis! Similique in quasi tempore aperiam fugit, nisi impedit!
                 </p>
                 <p className="flex text-pretty mt-8 text-base">
