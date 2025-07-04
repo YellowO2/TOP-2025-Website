@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import { useEffect, useState } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 
 const events = [
@@ -13,7 +13,7 @@ const events = [
     { time: '02:00 PM', name: 'Sports Activities', description: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.' },
     { time: '03:00 PM', name: 'Workshops', description: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.' },
     { time: '04:00 PM', name: 'Q&A Session', description: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa.' },
-    { time: '04:45 PM', name: 'Closing Remarks', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
+    { time: '04:45 AM', name: 'Closing Remarks', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
     { time: '05:00 PM', name: 'Networking & Snacks', description: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' },
 ];
 
@@ -21,11 +21,22 @@ function Schedule() {
     const { scrollYProgress } = useScroll();
     const progressHeight = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
 
-    // Create transforms for each event at the top level
+    const getScale = (progress: number, threshold: number) => {
+        const delta = Math.abs(progress - threshold);
+        if (delta < 0.03) {
+            return 1.5 - (delta / 0.03) * 0.5;
+        }
+        return 1;
+    };
+
+    const [progress, setProgress] = useState(0);
+
+    useEffect(() => {
+        const unsubscribe = scrollYProgress.on('change', v => setProgress(v));
+        return unsubscribe;
+    }, [scrollYProgress]);
+
     const thresholds = events.map((_, idx) => idx / (events.length - 1));
-    const scales = thresholds.map(threshold =>
-        useTransform(scrollYProgress, [threshold - 0.03, threshold, threshold + 0.03], [1, 1.5, 1])
-    );
 
     return (
         <div className='flex w-full py-32 justify-center px-24'>
@@ -43,7 +54,7 @@ function Schedule() {
                             top: `calc(${thresholds[idx] * 100}% - 0.5rem)`,
                             left: '50%',
                             x: '-50%',
-                            scale: scales[idx],
+                            scale: getScale(progress, thresholds[idx]),
                             background: '#fff',
                         }}
                         className="w-2 h-2 rounded-full shadow"
