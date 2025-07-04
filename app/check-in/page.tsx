@@ -76,21 +76,24 @@ export default function CheckInPage() {
               <GoChevronDown className="absolute top-4 right-4" />
             </div>
 
-            <select
-              value={subOG}
-              onChange={(e) => setSubOG(e.target.value)}
-              className="formSelect font-homevideo"
-              required
-            >
-              <option value="" disabled>
-                Select SubOG
-              </option>
-              {subOGs.map((s) => (
-                <option key={s} value={s}>
-                  {s}
+            <div className="flex relative w-full">
+              <select
+                value={subOG}
+                onChange={(e) => setSubOG(e.target.value)}
+                className="formSelect font-homevideo"
+                required
+              >
+                <option value="" disabled>
+                  Select SubOG
                 </option>
-              ))}
-            </select>
+                {subOGs.map((s) => (
+                  <option key={s} value={s}>
+                    {s}
+                  </option>
+                ))}
+              </select>
+              <GoChevronDown className="absolute top-4 right-4" />
+            </div>
             <button
               type="submit"
               className="py-3 bg-white text-semibold text-black font-homevideo rounded-lg mt-4"
