@@ -1,12 +1,9 @@
 'use client'
 import Image from "next/image";
-import { useParams } from "next/navigation";
 import { HiOutlineArchive } from "react-icons/hi";
 import { IoLocationOutline, IoShirtOutline, IoTimerOutline } from "react-icons/io5";
 
 function GamePage() {
-    const params = useParams();
-    // const gameId = params.game;
 
     return (
         <div className="flex flex-col w-full">

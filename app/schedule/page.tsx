@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useMemo } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 
 const events = [
@@ -20,22 +20,26 @@ const events = [
 function Schedule() {
     const { scrollYProgress } = useScroll();
     const progressHeight = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
-    const eventTransforms = events.map((_, idx) => {
-        const threshold = idx / (events.length - 1);
-        return {
-            scale: useTransform(
-                scrollYProgress,
-                [threshold - 0.03, threshold, threshold + 0.03],
-                [1, 1.5, 1]
-            ),
-            bg: useTransform(
-                scrollYProgress,
-                [threshold - 0.03, threshold, threshold + 0.03],
-                ['#fff', '#fff', '#fff']
-            ),
-            threshold
-        };
-    });
+
+    // Pre-calculate all transforms using useMemo
+    const eventTransforms = useMemo(() => {
+        return events.map((_, idx) => {
+            const threshold = idx / (events.length - 1);
+            return {
+                scale: useTransform(
+                    scrollYProgress,
+                    [threshold - 0.03, threshold, threshold + 0.03],
+                    [1, 1.5, 1]
+                ),
+                bg: useTransform(
+                    scrollYProgress,
+                    [threshold - 0.03, threshold, threshold + 0.03],
+                    ['#fff', '#fff', '#fff']
+                ),
+                threshold
+            };
+        });
+    }, [scrollYProgress]);
 
     return (
         <div className='flex w-full py-32 justify-center px-24'>

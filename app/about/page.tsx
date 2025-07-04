@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import React from 'react'
-import { LuFlame } from 'react-icons/lu'
 
 function About() {
     return (
