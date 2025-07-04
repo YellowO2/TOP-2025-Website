@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 function Footer() {
     return (
-        <div className='flex flex-col w-full min-h-[45vh] px-20 py-12 border-t border-white/10'>
+        <div className='flex flex-col w-full min-h-[45vh] px-12 md:px-20 py-12 border-t border-white/10'>
             {/* top section */}
             <div className='flex flex-col md:flex-row pb-12 justify-start md:justify-between border-b border-white/10 grow-8'>
                 {/* logo section */}
@@ -57,9 +57,9 @@ function Footer() {
 
             {/* bottom section */}
             <div className='flex flex-col md:flex-row pt-6 justify-between items-center text-xs  text-center'>
-                <div className='flex tracking-tight'>
+                {/* <div className='flex tracking-tight'>
                     <span className='opacity-60'>Website created by</span> <a href="https://www.linkedin.com/in/sabaxazad/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity ease-in-out duration-300 ml-1">Saba Azad</a>
-                </div>
+                </div> */}
                 <div className='flex tracking-tight opacity-60'>
                     © 2025 CCDS Top. All rights reserved.
                 </div>
