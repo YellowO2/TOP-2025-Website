@@ -14,16 +14,16 @@ export async function GET() {
     await initializeData();
   }
   const response = {
-    ogs: getAllOGs().map((og) => ({
-      name: og.name,
-      title: og.title,
-      subOGs: og.subOGs.map((subOG) => ({
-        name: subOG.subOGName,
-        itemCount: subOG.totalItemCount,
-        lastItemEarnedAt: subOG.lastItemEarnedAt,
-        items: Object.fromEntries(subOG.items),
-      })),
-    })),
+    // ogs: getAllOGs().map((og) => ({
+    //   name: og.name,
+    //   title: og.title,
+    //   subOGs: og.subOGs.map((subOG) => ({
+    //     name: subOG.subOGName,
+    //     itemCount: subOG.totalItemCount,
+    //     lastItemEarnedAt: subOG.lastItemEarnedAt,
+    //     items: Object.fromEntries(subOG.items),
+    //   })),
+    // })),
     leaderboard: sortSubOGsByItemCount(getAllSubOGs()).map((subOG) => ({
       name: subOG.subOGName,
       itemCount: subOG.totalItemCount,

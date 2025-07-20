@@ -2,10 +2,11 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { GoChevronLeft, GoChevronRight } from 'react-icons/go';
 import OGCard from './OGCard';
+import { OG_INFO } from '@/app/lib/constants/oginfo';
 
 function FeaturedGroups() {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [maxOgs, setMaxOgs] = useState<number>(2);
+    const [maxOgs, setMaxOgs] = useState<number>(OG_INFO.length);
     const [currOg, setCurrOg] = useState<number>(0);
     const containerRef = useRef<HTMLDivElement>(null);
     const [containerWidth, setContainerWidth] = useState<number>(0);
@@ -56,8 +57,9 @@ function FeaturedGroups() {
                         { transform: `translateX(-${currOg * containerWidth}px)` }
                     }
                 >
-                    <OGCard containerWidth={containerWidth} />
-                    <OGCard containerWidth={containerWidth} />
+                    {OG_INFO.map((OGIN, index) => (
+                        <OGCard key={index} containerWidth={containerWidth} ogInfo={OGIN} />
+                    ))}
                 </div>
             </div>
             <button

@@ -10,7 +10,7 @@ function MainComponent() {
                 <div className="absolute w-full top-0 flex flex-col left-0 font-inter gap-y-2">
                     <h3 className="flex lg:text-6xl font-semibold text-3xl font-homevideo">CCDS TOP</h3>
                     <p className="flex text-[9px] w-2/3 font-light md:w-[12vw] md:text-xs tracking-wide">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Form your alliances. Earn your wins.
                     </p>
                 </div>
 
@@ -23,7 +23,7 @@ function MainComponent() {
                         </span>
                     </Link>
                     <p className="flex text-[9px] md:text-xs w-fit text-right font-light tracking-wide">
-                        Lorem ipsum dolor sit amet.
+                        Let the games begin.
                     </p>
                 </div>
 

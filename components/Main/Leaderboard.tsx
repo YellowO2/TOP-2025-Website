@@ -38,7 +38,7 @@ function Leaderboard() {
         <div className="relative flex flex-col w-full border-y py-24 px-12 md:p-24 gap-6 bg-black border-white/10">
             <h1 className="font-homevideo font-bold">Leaderboard</h1>
             <p className="text-xs mb-4 w-full md:w-1/2">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit et similique nulla, quo ipsum in. At qui provident incidunt fugit quae illum rerum, nobis quidem, temporibus eum necessitatibus commodi voluptas.
+                Winning a game earns your team points. Points are awarded across all games on Day 1 and Day 2. At the end of Day 2, the team with the highest total points will be declared the overall winner.
             </p>
             <div className="grid grid-rows-10 grid-cols-1 gap-3 w-full h-full">
                 {leaderboardData.slice(0, 10).map((record, index) => (

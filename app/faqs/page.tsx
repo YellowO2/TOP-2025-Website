@@ -3,11 +3,8 @@ import React from 'react'
 import { LuPlus } from 'react-icons/lu'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image';
+import { faqItems } from '../lib/constants/faqItems';
 
-interface FAQItem {
-    question: string;
-    answer: string;
-}
 
 function FAQs() {
     const [openedDrawer, setOpenedDrawer] = React.useState<number>(-1);
@@ -15,33 +12,6 @@ function FAQs() {
     const handleOpen = (idx: number) => {
         setOpenedDrawer(openedDrawer === idx ? -1 : idx);
     }
-
-    const faqItems: FAQItem[] = [
-        {
-            question: "Example",
-            answer: "This is an example answer that will appear in the drawer when clicked."
-        },
-        {
-            question: "Example",
-            answer: "Another example answer for the second FAQ item."
-        },
-        {
-            question: "Example",
-            answer: "Third example answer with some content."
-        },
-        {
-            question: "Example",
-            answer: "This is an example answer that will appear in the drawer when clicked."
-        },
-        {
-            question: "Example",
-            answer: "Another example answer for the second FAQ item."
-        },
-        {
-            question: "Example",
-            answer: "Third example answer with some content."
-        },
-    ];
 
     return (
         <div className='flex relative items-center justify-center  w-full border-white/10 pb-24 md:pb-48 flex-col'>
@@ -85,15 +55,12 @@ function FAQs() {
                                             transition={{ duration: 0.3, ease: "easeInOut" }}
                                             className="overflow-hidden"
                                         >
-                                            <div className="px-2 py-4 text-sm text-white/70">
-                                                {item.answer}
-                                            </div>
+                                            <div className="px-2 py-4 text-sm text-white/70" dangerouslySetInnerHTML={{ __html: item.answer }} />
                                         </motion.div>
                                     )}
                                 </AnimatePresence>
                             </div>
 
-                            {/* Only render divider if not the last item */}
                             {index < faqItems.length - 1 && (
                                 <div className='border-t border-white/10 my-4' />
                             )}
