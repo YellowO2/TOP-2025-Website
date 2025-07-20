@@ -1,21 +1,16 @@
 'use client'
 import { useEffect, useState } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
+import { SCHEDULE } from '@/app/lib/constants/schedule'
 
-const events = [
-    { time: '08:00 AM', name: 'Opening Ceremony', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-    { time: '08:45 AM', name: 'Welcome Speech', description: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' },
-    { time: '09:15 AM', name: 'Icebreaker Games', description: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.' },
-    { time: '10:00 AM', name: 'Campus Tour', description: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.' },
-    { time: '11:00 AM', name: 'Department Introductions', description: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa.' },
-    { time: '12:00 PM', name: 'Lunch Break', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-    { time: '01:00 PM', name: 'Club Presentations', description: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' },
-    { time: '02:00 PM', name: 'Sports Activities', description: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.' },
-    { time: '03:00 PM', name: 'Workshops', description: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.' },
-    { time: '04:00 PM', name: 'Q&A Session', description: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa.' },
-    { time: '04:45 AM', name: 'Closing Remarks', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-    { time: '05:00 PM', name: 'Networking & Snacks', description: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' },
-];
+
+const events = SCHEDULE.flatMap(day =>
+    day.activities.map(activity => ({
+        time: activity.time,
+        name: activity.activity,
+        description: [day.day, activity.venue, activity.remarks].filter(Boolean).join(' | ')
+    }))
+);
 
 function Schedule() {
     const { scrollYProgress } = useScroll();
