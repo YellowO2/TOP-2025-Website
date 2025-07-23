@@ -6,7 +6,7 @@ function Games() {
         <div className="flex w-full py-24 px-12">
             <div className="grid w-full gap-10 grid-cols-1 lg:grid-cols-3 ">
                 {PROGRAMS.map((program, idx) => (
-                    <GameCard key={program.name} gameName={program.name} />
+                    <GameCard key={idx} gameName={program.name} />
                 ))}
             </div>
         </div>
