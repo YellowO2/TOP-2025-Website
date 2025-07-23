@@ -14,7 +14,7 @@ function GameCard(
         <div className="flex flex-col w-full h-[400px] rounded-md drop-shadow-sm drop-shadow-[#101010] border-[#212121] border overflow-hidden relative">
             <div className="w-full h-[200px] relative">
                 <Image
-                    src="/image.jpg"
+                    src={program?.image || "/image.jpg"}
                     alt={gameName || "Game"}
                     fill
                     className="object-cover [mask-image:linear-gradient(to_bottom,white,white_40%,transparent_95%)]"

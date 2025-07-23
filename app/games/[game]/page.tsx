@@ -15,7 +15,7 @@ function GamePage() {
         <div className="flex flex-col w-full">
             <div className="flex w-full h-[300px] relative">
                 <Image
-                    src="/image.jpg"
+                    src={program?.image || "/image.jpg"}
                     alt={program?.name || "Game"}
                     fill
                     className="object-cover [mask-image:linear-gradient(to_bottom,white,white_40%,transparent_95%)]"
@@ -37,7 +37,7 @@ function GamePage() {
                     {program?.caption || 'No description available.'}
                 </div>
                 {program?.paragraphs?.map((para, idx) => (
-                    <p key={idx} className="flex text-pretty mt-8 text-base ">{para}</p>
+                    <p key={idx} className="flex text-pretty mt-8 text-base w-full">{para}</p>
                 ))}
 
 
@@ -49,7 +49,7 @@ function GamePage() {
                         <div className='flex flex-col'>
                             <p className='flex font-semibold text-base'>Location</p>
                             <p className='font-light'>
-                                Hall 2 - Block 141 Students Walk, Singapore 639549
+                                Respective OG Venues (check with OGLs)
                             </p>
                         </div>
                     </div>
@@ -84,7 +84,7 @@ function GamePage() {
                         </div>
                     </div>
                 </div>
-                <Image
+                {/* <Image
                     src="/map.png"
                     alt="Map"
                     width={800}
@@ -92,7 +92,7 @@ function GamePage() {
                     className="w-full"
                     quality={100}
                     style={{ objectPosition: 'center' }}
-                />
+                /> */}
             </div>
         </div>
     )

@@ -2,6 +2,7 @@ export const PROGRAMS = [
   {
     name: "Shrinking Island",
     tags: ["Teamwork", "Coordination", "Creativity"],
+    image: "/games/shrinking-island/img2.png",
     caption:
       "The floor was their only refuge — a square of safety marked by ropes, barely enough for the whole team to stand shoulder to shoulder.",
     paragraphs: [
@@ -12,6 +13,7 @@ export const PROGRAMS = [
   {
     name: "Eyes Wide Shut",
     tags: ["Trust", "Communication", "Deception"],
+    image: "/games/eyes-wide-shut/img1.png",
     caption:
       "Blindfolded and unsure, the Seeker stepped forward, guided only by voices in the void.",
     paragraphs: [
@@ -21,6 +23,7 @@ export const PROGRAMS = [
   {
     name: "Dizzy Directions",
     tags: ["Teamwork", "Communication", "Resilience"],
+    image: "/games/dizzy-directions/img1.png",
     caption: "The room spun. Quite literally.",
     paragraphs: [
       "One by one, the blindfolded throwers twirled dizzying circles before stumbling to the line, ball in hand, giggles trailing behind. “More to the left!” their teammates shouted. “Wait—too much power!” The plastic ball soared, missing the basket by a mile. But no one cared — not really. Each throw sparked laughter, each miss brought them closer. They rotated roles like clockwork — thrower, guide, ball fetcher — each gaining a new appreciation for the chaos. As the minutes ticked down, coordination slowly replaced confusion. Cheers erupted with every successful toss. They didn’t just throw balls — they threw away their awkwardness, and built something else instead: camaraderie.",
@@ -29,6 +32,7 @@ export const PROGRAMS = [
   {
     name: "Read My Mind",
     tags: ["Listening", "Decoding", "Fast Thinking"],
+    image: "/games/read-my-mind/img2.png",
     caption: "In a room divided by silence, the speakers began.",
     paragraphs: [
       "A robotic voice, garbled and strange, whispered something familiar — yet foreign. “Did it say… ‘I like hamsters’?” a team member guessed. “No way, that sounded like ‘eating homework’!” Confusion turned to chaos as guesses flew, whispered into the game master’s ear like secret spells. Every few seconds, the audio replayed — taunting, twisting. Desperation grew, until finally, a hand shot up: a bold guess. Correct? Maybe. Three rounds later, it didn’t matter who won. They left laughing, breathless from the mental gymnastics. Somehow, through all the nonsense syllables and decoding disasters, they’d found something clearer than any sentence: but was it right?",
@@ -37,6 +41,7 @@ export const PROGRAMS = [
   {
     name: "Stack & Steady",
     tags: ["Memory", "Balance", "Teamwork"],
+    image: "/games/stack-&-steady/img1.png",
     caption:
       "It started with whispers and puzzled faces. Each person held a secret — a single instruction for the perfect tower.",
     paragraphs: [
@@ -46,6 +51,7 @@ export const PROGRAMS = [
   {
     name: "The Irrelevant Answer",
     tags: ["Creativity", "Improvisation", "Memory"],
+    image: "/games/the-irrelevant-answer/img1.png",
     caption: "“What’s your name?” “Banana peels taste like Tuesdays.”",
     paragraphs: [
       "Laughter erupted. The challenge: say something that makes sense but not to the question. With only five seconds to respond, brains scrambled for creative nonsense. “How do you get to school?” — “Dinosaurs don’t pay rent.” In round two, things escalated — now you had to answer the previous question. Minds flipped, timing sharpened. Teammates giggled, brains short-circuited, and somewhere between surreal answers and frantic thinking, the awkward ice melted. It was a chaos of logic and absurdity.",
@@ -54,6 +60,7 @@ export const PROGRAMS = [
   {
     name: "1 2 3 Don’t Cheese",
     tags: ["Creativity", "Improvisation", "Memory"],
+    image: "/games/123-dont-cheese/img2.png",
     caption:
       "“Ten seconds. Run!” Students vanished into props — behind boxes, under cloths, pressed against walls. Click!”",
     paragraphs: [
@@ -63,6 +70,7 @@ export const PROGRAMS = [
   {
     name: "Balloon Tower Build",
     tags: ["Creativity", "Accuracy", "Coordination"],
+    image: "/games/balloon-tower/img1.png",
     caption:
       "“Ten seconds. Run!” Students vanished into props — behind boxes, under cloths, pressed against walls. Click!”",
     paragraphs: [
@@ -73,6 +81,7 @@ export const PROGRAMS = [
   {
     name: "Borderlight Battle",
     tags: ["Strategy", "Accuracy", "Communication"],
+    image: "/games/borderlight-battle/img1.png",
     caption:
       "“Ten seconds. Run!” Students vanished into props — behind boxes, under cloths, pressed against walls. Click!”",
     paragraphs: [
@@ -82,6 +91,7 @@ export const PROGRAMS = [
   {
     name: "Silent Cards",
     tags: ["Strategy", "Memory", "Precision"],
+    image: "/games/silent-cards/img1.png",
     caption: "Silence blanketed the room.",
     paragraphs: [
       "For 30 seconds, all eyes scanned a complex card pattern. Then — the image disappeared. Each team huddled around their table, trying to recreate it. No talking allowed. Only gestures, head nods, finger taps. Every card mattered. Was that the Queen of Spades? Or the Nine of Clubs? With just five minutes, pressure grew. But slowly, piece by piece, the image came to life again — not through speech, but through silent synergy.",
@@ -90,6 +100,7 @@ export const PROGRAMS = [
   {
     name: "Flip Tac Toe",
     tags: ["Strategy", "Teamwork", "Precision"],
+    image: "/games/flip-tac-toe/img1.png",
     caption:
       "The grid was marked, beanbags ready, bottles half-filled. Flip. Miss. Flip. Landed!",
     paragraphs: [
