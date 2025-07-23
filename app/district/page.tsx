@@ -62,7 +62,7 @@ function District() {
                     </h1>
                 </div>
                 <div className="flex text-center font-light">
-                    View all your district's resources and statistics on this page.
+                    View all your district&apos;s resources and statistics on this page.
                 </div>
 
                 {loading ? (
