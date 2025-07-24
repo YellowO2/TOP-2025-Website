@@ -52,7 +52,7 @@ function District() {
                     style={{ objectPosition: 'center' }}
                 />
             </div>
-            <div className="flex flex-col gap-5 items-center w-full h-full px-12 md:px-24 pt-12 pb-24">
+            <div className="flex flex-col gap-5 items-center w-full h-full px-8 md:px-24 pt-12 pb-24">
                 <div className="flex px-3 py-1 rounded-full border border-white/20">
                     {ogInfo?.district || "District Not Found"}
                 </div>
@@ -64,7 +64,7 @@ function District() {
                 <div className="flex text-center font-light">
                     View all your district&apos;s resources and statistics on this page.
                 </div>
-                <p className="flex text-pretty my-8 text-base w-full">
+                <p className="flex text-pretty my-8 text-sm w-full">
                     {ogInfo?.description || "No description available."}
                 </p>
 

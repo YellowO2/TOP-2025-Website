@@ -42,12 +42,12 @@ function Leaderboard() {
             <p className="text-xs mb-4 w-full md:w-1/2">
                 Winning a game earns your team points. Points are awarded across all games on Day 1 and Day 2. At the end of Day 2, the team with the highest total points will be declared the overall winner.
             </p>
-            <div className='w-full flex items-center justify-between text-xs font-homevideo'>
-                <button onClick={() => setRange(6)} className='gap-2 flex items-center border py-1 pl-1 pr-3 border-white/30 rounded-sm'>
+            <div className='w-full flex items-center md:flex-row flex-col justify-between text-xs font-homevideo gap-3'>
+                <button onClick={() => setRange(6)} className='gap-2 flex items-center border py-2 pl-2 pr-3 border-white/30 md:order-1 order-2 rounded-sm md:w-fit w-full justify-center'>
                     <GoChevronLeft />
                     See OGs 1-6
                 </button>
-                <div className='gap-2 flex'>
+                <div className='gap-2 flex md:order-2 order-1 items-center justify-center md:w-fit w-full'>
                     <span>
                         Viewing Districts {range === 6 ? '1-6' : '7-13'}
                     </span>
@@ -55,7 +55,7 @@ function Leaderboard() {
                         of 13
                     </span>
                 </div>
-                <button onClick={() => setRange(13)} className='gap-2 flex items-center border py-1 pr-1 pl-3 border-white/30 rounded-sm'>
+                <button onClick={() => setRange(13)} className='gap-2 flex items-center border py-2 pr-2 pl-3 border-white/30 rounded-sm order-3 md:w-fit w-full justify-center'>
                     See OGs 7-13
                     <GoChevronRight />
                 </button>

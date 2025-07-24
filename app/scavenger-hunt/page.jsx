@@ -14,7 +14,7 @@ function ScavengerHunt() {
                     style={{ objectPosition: 'center' }}
                 />
             </div>
-            <div className="flex flex-col gap-5 items-center w-full h-full px-12 md:px-24 pt-12 pb-24">
+            <div className="flex flex-col gap-5 items-center w-full h-full px-8 md:px-24 pt-12 pb-24">
                 <div className="flex w-full gap-2 items-center justify-center mb-2">
                     <span className="px-3 py-1 rounded-full border border-white/30 bg-white/5 text-sm font-medium">Open for All</span>
                 </div>
@@ -27,8 +27,8 @@ function ScavengerHunt() {
                 <p className="flex text-pretty mt-8 text-base w-full">
                     Rules: As you explore the campus on Day 1, keep an eye out for spots that match the photo prompts below. Get creative with your shots — the most imaginative entries stand a chance to win bonus resources that could give you an edge on Day 2! Submit your photo in the OG group with the prompt number, your OG and sub-OG name and number, and don't forget to tag @JaySg05
                 </p>
-                <h2 className="w-full mt-6 font-homevideo">Scavenger Hunt</h2>
-                <ol className="list-decimal list-inside text-left w-full mt-2 space-y-2">
+                <h2 className="w-full mt-12 font-homevideo">Scavenger Hunt</h2>
+                <ol className="list-decimal list-inside text-left w-full mt-2 space-y-6">
                     <li>Team selfie with an "NTU" sign.</li>
                     <li>Find and take a selfie with a group of students studying together.</li>
                     <li>Take a photo with a sculpture or art installation on campus.</li>

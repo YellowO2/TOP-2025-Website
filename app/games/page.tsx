@@ -3,7 +3,7 @@ import { PROGRAMS } from "../lib/constants/programs"
 
 function Games() {
     return (
-        <div className="flex w-full py-24 px-12">
+        <div className="flex w-full py-24 px-8">
             <div className="grid w-full gap-10 grid-cols-1 lg:grid-cols-3 ">
                 {PROGRAMS.map((program, idx) => (
                     <GameCard key={idx} gameName={program.name} />
