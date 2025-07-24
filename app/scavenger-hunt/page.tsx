@@ -48,7 +48,7 @@ function ScavengerHunt() {
                     Participants will embark on a scavenger hunt, solving clues and completing challenges to find hidden treasures around the campus.
                 </div>
                 <p className="flex text-pretty mt-8 text-base w-full">
-                    Rules: As you explore the campus on Day 1, keep an eye out for spots that match the photo prompts below. Get creative with your shots — the most imaginative entries stand a chance to win bonus resources that could give you an edge on Day 2! Submit your photo in the OG group with the prompt number, your OG and sub-OG name and number, and don't forget to tag @JaySg05
+                    Rules: As you explore the campus on Day 1, keep an eye out for spots that match the photo prompts below. Get creative with your shots — the most imaginative entries stand a chance to win bonus resources that could give you an edge on Day 2! Submit your photo in the OG group with the prompt number, your OG and sub-OG name and number, and don&apos;t forget to tag @JaySg05
                 </p>
                 <h2 className="w-full mt-12 font-homevideo">Scavenger Hunt</h2>
                 <ol className="list-decimal list-inside text-left w-full mt-2 space-y-6">
