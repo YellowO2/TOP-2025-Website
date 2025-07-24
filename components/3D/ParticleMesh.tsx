@@ -16,11 +16,6 @@ export default function ParticleMesh() {
     const pointThreshold = 0.5
     const [hovered, setHovered] = useState(false)
 
-    // Switch to lower poly model if performance drops
-    // (PerformanceMonitor must be rendered in your Canvas)
-    // You can also debounce or guard this if you want to avoid rapid switching
-    // See: https://github.com/pmndrs/drei#performancemonitor
-
     const gltf = useLoader(
         GLTFLoader,
         modelPath,

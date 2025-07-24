@@ -21,7 +21,7 @@ function GamePage() {
                     className="object-cover [mask-image:linear-gradient(to_bottom,white,white_40%,transparent_95%)]"
                     quality={100}
                     priority
-                    style={{ objectPosition: 'center' }}
+                    style={{ objectPosition: 'center 25%' }}
                 />
             </div>
             <div className="flex flex-col gap-5 items-center w-full h-full px-12 md:px-24 pt-12 pb-24">
@@ -39,8 +39,6 @@ function GamePage() {
                 {program?.paragraphs?.map((para, idx) => (
                     <p key={idx} className="flex text-pretty mt-8 text-base w-full">{para}</p>
                 ))}
-
-
 
                 <h2 className="w-full mt-6">More Information</h2>
                 <div className='grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 gap-x-12 gap-y-4 w-full mt-8 mb-12'>

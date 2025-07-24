@@ -40,6 +40,7 @@ function NavMenu({ menuData }: { menuData: MenuData }) {
           <Link href='/games' className="flex navMenuItem">Games</Link>
           <Link href='/schedule' className="flex navMenuItem">Schedule</Link>
           <Link href='/faqs' className="flex navMenuItem">FAQs</Link>
+          <Link href='/scavenger-hunt' className="flex navMenuItem">Scavenger Hunt</Link>
         </div>
 
         <AnimatePresence>

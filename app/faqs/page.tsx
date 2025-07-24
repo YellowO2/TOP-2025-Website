@@ -17,17 +17,17 @@ function FAQs() {
         <div className='flex relative items-center justify-center  w-full border-white/10 pb-24 md:pb-48 flex-col'>
             <div className="flex w-full h-[300px] relative pointer-events-none">
                 <Image
-                    src="/image.jpg"
+                    src="/faqs-about-us/img3.png"
                     alt="Game 1"
                     fill
                     className="object-cover [mask-image:linear-gradient(to_bottom,white,white_40%,transparent_95%)]"
                     quality={100}
-                    style={{ objectPosition: 'center' }}
+                    style={{ objectPosition: 'center 35%' }}
                 />
             </div>
             <div className='flex flex-col  w-full transition-all ease-in-out duration-300 px-12 md:px-24'>
 
-                <h1 className='flex mb-4 font-bold font-homevideo'>
+                <h1 className='flex my-8 font-bold font-homevideo'>
                     FAQs
                 </h1>
                 <div className='flex flex-col mt-8 w-full'>

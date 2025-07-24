@@ -43,10 +43,10 @@ function District() {
         <div className="flex flex-col w-full">
             <div className="flex w-full h-[300px] relative">
                 <Image
-                    src="/image.jpg"
+                    src={ogInfo?.logo || "/default-district-image.jpg"}
                     alt="Game 1"
                     fill
-                    className="object-cover [mask-image:linear-gradient(to_bottom,white,white_40%,transparent_95%)]"
+                    className="object-cover [mask-image:linear-gradient(to_bottom,white,white_40%,transparent_95%)] opacity-20"
                     quality={100}
                     priority
                     style={{ objectPosition: 'center' }}
@@ -64,15 +64,18 @@ function District() {
                 <div className="flex text-center font-light">
                     View all your district&apos;s resources and statistics on this page.
                 </div>
+                <p className="flex text-pretty my-8 text-base w-full">
+                    {ogInfo?.description || "No description available."}
+                </p>
 
                 {loading ? (
                     <div className="w-full flex items-center justify-center py-12">Loading...</div>
                 ) : (
-                    <div className='grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 gap-x-12 gap-y-4 w-full mt-12 mb-12'>
+                    <div className='grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 gap-x-12 gap-y-4 w-full mb-12'>
                         {subOGs.map((subog, idx) => (
                             <div key={idx} className='flex items-center flex-row gap-6 w-full'>
                                 <div className='flex flex-col'>
-                                    <p className='flex font-semibold text-base'>{subog.name}</p>
+                                    <p className='flex font-semibold text-lg'>{subog.name}</p>
                                     {Object.entries(subog.items).map(([itemName, amount]) => (
                                         <p className='font-light' key={itemName}>
                                             {itemName}: {amount}

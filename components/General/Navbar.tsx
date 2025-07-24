@@ -80,6 +80,8 @@ function Navbar() {
                     <div className='menuDivider' />
                     <Link href='/faqs' className='flex uppercase tracking-widest' onClick={handleLinkClick}>FAQs</Link>
                     <div className='menuDivider' />
+                    <Link href='/scavenger-hunt' className='flex uppercase tracking-widest' onClick={handleLinkClick}>Scavenger Hunt</Link>
+                    <div className='menuDivider' />
                 </div>
             </div>
         </div>

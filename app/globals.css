@@ -114,3 +114,26 @@ h2 {
 .formSelect{
   @apply appearance-none px-5 py-3 border border-white/10 outline-none rounded-lg w-full cursor-pointer
 }
+
+@keyframes mask-flare-loop {
+  0% {
+    mask-position-x: 0%;
+    -webkit-mask-position-x: 0%;
+  }
+
+  100% {
+    mask-position-x: 100%;
+    -webkit-mask-position-x: 100%;
+  }
+}
+
+.mask-flare-loop {
+  mask-size: 400%;
+  -webkit-mask-size: 400%;
+  mask-image: linear-gradient(60deg, rgb(0, 0, 0) 25%, rgba(0, 0, 0, 0.4) 50%, rgb(0, 0, 0) 75%);
+  -webkit-mask-image: linear-gradient(60deg, rgb(0, 0, 0) 25%, rgba(0, 0, 0, 0.4) 50%, rgb(0, 0, 0) 75%);
+  mask-position-y: 50%;
+  -webkit-mask-position-y: 50%;
+  animation: mask-flare-loop 2s linear infinite;
+  -webkit-animation: mask-flare-loop 2s linear infinite;
+}
