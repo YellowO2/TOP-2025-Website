@@ -2,10 +2,18 @@
 import { useEffect, useState } from 'react';
 import LeaderboardRecord from './LeaderboardRecord'
 
+type SubOGType = {
+    name: string;
+    itemCount: number;
+    lastItemEarnedAt: string;
+    items: Record<string, number>;
+};
+
 type LeaderboardRecordType = {
     name: string;
     score?: number;
     cardCount?: number;
+    subOGs?: SubOGType[];
 };
 
 function Leaderboard() {
@@ -41,9 +49,23 @@ function Leaderboard() {
                 Winning a game earns your team points. Points are awarded across all games on Day 1 and Day 2. At the end of Day 2, the team with the highest total points will be declared the overall winner.
             </p>
             <div className="grid grid-rows-10 grid-cols-1 gap-3 w-full h-full">
-                {leaderboardData.slice(0, 10).map((record, index) => (
-                    <LeaderboardRecord key={index} rank={index + 1} groupName={record.name} score={day2 ? record.score ?? 0 : record.cardCount ?? 0} />
-                ))}
+                {leaderboardData.slice(0, 10).map((record, index) => {
+                    // Calculate total resources from all subOGs
+                    const totalResources = record.subOGs
+                        ? record.subOGs.reduce((sum: number, subog: SubOGType) => {
+                            if (!subog.items) return sum;
+                            return sum + Object.values(subog.items).reduce((a, b) => Number(a) + Number(b), 0);
+                        }, 0)
+                        : 0;
+                    return (
+                        <LeaderboardRecord
+                            key={index}
+                            rank={index + 1}
+                            groupName={record.name}
+                            score={totalResources}
+                        />
+                    );
+                })}
             </div>
         </div>
     )
