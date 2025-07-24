@@ -47,7 +47,7 @@ function GamePage() {
                         <div className='flex flex-col'>
                             <p className='flex font-semibold text-base'>Location</p>
                             <p className='font-light'>
-                                Respective OG Venues (check with OGLs)
+                                {program?.location || 'Respecting OG venues. Please check with your OG for details.'}
                             </p>
                         </div>
                     </div>
