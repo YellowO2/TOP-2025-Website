@@ -1,5 +1,28 @@
 import Information from "@/components/About/Information"
 import Introduction from "@/components/About/Introduction"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+    title: "About Us | CCDS TOP™",
+    description: "Learn more about CCDS TOP™ and its mission.",
+    openGraph: {
+        title: "About Us | CCDS TOP™",
+        description:
+            "Learn more about CCDS TOP™ and its mission.",
+        url: "https://ccdstop.com/about",
+        siteName: "CCDS TOP™",
+        images: [
+            {
+                url: "/image.jpg",
+                width: 800,
+                height: 800,
+                alt: "CCDS TOP™ Photo",
+            },
+        ],
+        locale: "en_SG",
+        type: "website",
+    },
+};
 
 function About() {
     return (

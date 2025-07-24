@@ -5,8 +5,26 @@ import Navbar from "@/components/General/Navbar";
 import Smooth from "@/components/General/Smooth";
 
 export const metadata: Metadata = {
-  title: "CCDS Top",
-  description: "Official Website",
+  title: "Home | CCDS TOP™",
+  description:
+    "Official Website of CCDS TOP™. Our CCDS freshman orientation program is designed to help you transition smoothly into university life at NTU. Explore our resources, events, and community support to make the most of your first year.",
+  openGraph: {
+    title: "Home | CCDS TOP™",
+    description:
+      "Official Website of CCDS TOP™. Our CCDS freshman orientation program is designed to help you transition smoothly into university life at NTU. Explore our resources, events, and community support to make the most of your first year.",
+    url: "https://ccdstop.com/",
+    siteName: "CCDS TOP™",
+    images: [
+      {
+        url: "/image.jpg",
+        width: 800,
+        height: 800,
+        alt: "CCDS TOP™ Photo",
+      },
+    ],
+    locale: "en_SG",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

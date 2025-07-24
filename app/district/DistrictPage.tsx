@@ -48,11 +48,12 @@ function District() {
                     src={ogInfo?.logo || "/default-district-image.jpg"}
                     alt="Game 1"
                     fill
-                    className="object-cover [mask-image:linear-gradient(to_bottom,white,white_40%,transparent_95%)] opacity-20"
+                    className="object-cover [mask-image:linear-gradient(to_bottom,white,white_40%,transparent_95%)] opacity-50"
                     quality={100}
                     priority
                     style={{ objectPosition: 'center' }}
                 />
+                <div className="absolute inset-0 bg-gradient-to-b from-orange-400 to-orange-600 opacity-100 mix-blend-multiply pointer-events-none rounded-b-none" />
             </div>
             <div className="flex flex-col gap-5 items-center w-full h-full px-8 md:px-24 pt-12 pb-24">
                 <div className="flex px-3 py-1 rounded-full border border-white/20">
