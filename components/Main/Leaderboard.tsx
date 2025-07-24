@@ -2,18 +2,10 @@
 import { useEffect, useState } from 'react';
 import LeaderboardRecord from './LeaderboardRecord'
 
-type SubOGType = {
-    name: string;
-    itemCount: number;
-    lastItemEarnedAt: string;
-    items: Record<string, number>;
-};
 
 type LeaderboardRecordType = {
     name: string;
-    score?: number;
-    cardCount?: number;
-    subOGs?: SubOGType[];
+    itemCount?: number;
 };
 
 function Leaderboard() {
@@ -26,6 +18,7 @@ function Leaderboard() {
         try {
             const response = await fetch('/api/leaderboard');
             const data = await response.json();
+            console.log('Leaderboard data:', data.leaderboard);
             setTimeout(() => {
                 setLeaderboardData(data.leaderboard);
                 setLoading(false);
@@ -60,18 +53,12 @@ function Leaderboard() {
                         </div>
                     ))
                     : leaderboardData.slice(0, 10).map((record, index) => {
-                        const totalResources = record.subOGs
-                            ? record.subOGs.reduce((sum: number, subog: SubOGType) => {
-                                if (!subog.items) return sum;
-                                return sum + Object.values(subog.items).reduce((a, b) => Number(a) + Number(b), 0);
-                            }, 0)
-                            : 0;
                         return (
                             <LeaderboardRecord
                                 key={index}
                                 rank={index + 1}
                                 groupName={record.name}
-                                score={totalResources}
+                                score={record.itemCount}
                             />
                         );
                     })}
