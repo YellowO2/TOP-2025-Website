@@ -3,7 +3,7 @@ import React from 'react'
 import { LuPlus } from 'react-icons/lu'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image';
-import { faqItems } from '../lib/constants/faqItems';
+import { faqItems } from '../../lib/constants/faqItems';
 
 
 function FAQs() {

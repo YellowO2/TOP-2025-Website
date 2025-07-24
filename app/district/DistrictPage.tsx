@@ -3,7 +3,8 @@
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { OG_INFO } from "../lib/constants/oginfo";
+import { OG_INFO } from "../../lib/constants/oginfo";
+import { RESOURCE_ICONS } from "@/lib/constants/resources";
 
 interface SubOG {
     name: string;
@@ -29,6 +30,7 @@ function District() {
             .then(res => res.json())
             .then(data => {
                 setSubOGs(data.subOGs || []);
+                console.log("SubOGs data:", data.subOGs);
                 setLoading(false);
             })
             .catch(() => setLoading(false));
@@ -74,13 +76,22 @@ function District() {
                     <div className='grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 gap-x-12 gap-y-4 w-full mb-12'>
                         {subOGs.map((subog, idx) => (
                             <div key={idx} className='flex items-center flex-row gap-6 w-full'>
-                                <div className='flex flex-col'>
-                                    <p className='flex font-semibold text-lg'>{subog.name}</p>
-                                    {Object.entries(subog.items).map(([itemName, amount]) => (
-                                        <p className='font-light' key={itemName}>
-                                            {itemName}: {amount}
-                                        </p>
-                                    ))}
+                                <div className='flex flex-col w-full'>
+                                    <p className='flex font-homevideo text-white/20 font-bold text-lg mb-2'>{subog.name.replace(/^District\s*\d+\s*/i, '')} INVENTORY</p>
+                                    <div className="flex flex-col border w-full bg-white/3 border-white/10 divide-y divide-white/10">
+                                        {Object.keys(subog.items).length === 0 ? (
+                                            <p className='font-homevideo text-xs px-4 py-2 text-white/40'>Collect some resources!</p>
+                                        ) : (
+                                            Object.entries(subog.items).map(([itemName, amount]) => (
+                                                <p className='font-homevideo px-4 py-2' key={itemName}>
+                                                    {(() => {
+                                                        const Icon = RESOURCE_ICONS[itemName as keyof typeof RESOURCE_ICONS];
+                                                        return Icon ? <Icon className="inline-block mr-1" size={20} /> : null;
+                                                    })()} {itemName}: {amount}
+                                                </p>
+                                            ))
+                                        )}
+                                    </div>
                                 </div>
                             </div>
                         ))}

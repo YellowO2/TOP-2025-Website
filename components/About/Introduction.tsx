@@ -55,7 +55,7 @@ function Introduction() {
                 Welcome to CCDS TOP 2025: Outwit. Outlast. Outplay.
             </h1>
             <p className='max-w-xl md:text-sm text-xs flex text-pretty text-center mt-2'>
-                Inspired by the Hunger Games, our freshman orientation throws you into three days of strategy, teamwork, and friendly rivalry. From August 4th to 6th, you'll join one of thirteen unique districts, each with its own traditions and spirit, and compete in challenges designed to test your wit and determination.
+                Inspired by the Hunger Games, our freshman orientation throws you into three days of strategy, teamwork, and friendly rivalry. From August 4th to 6th, you&apos;ll join one of thirteen unique districts, each with its own traditions and spirit, and compete in challenges designed to test your wit and determination.
             </p>
         </div>
     )

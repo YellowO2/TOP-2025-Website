@@ -1,5 +1,5 @@
 import GameCard from "@/components/Game/GameCard"
-import { PROGRAMS } from "../lib/constants/programs"
+import { PROGRAMS } from "../../lib/constants/programs"
 
 function Games() {
     return (

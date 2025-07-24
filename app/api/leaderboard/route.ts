@@ -5,7 +5,7 @@ import {
   sortSubOGsByItemCount,
   initializeData,
   isDataInitialized,
-} from "../../lib/database";
+} from "../../../lib/database";
 
 // GET handler for the leaderboard API route
 export async function GET() {

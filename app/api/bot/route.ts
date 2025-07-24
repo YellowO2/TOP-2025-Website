@@ -8,8 +8,8 @@ import {
   getAllOGs,
   isDataInitialized,
   initializeData,
-} from "../../lib/database";
-import { SubOG } from "@/app/models/OG";
+} from "../../../lib/database";
+import { SubOG } from "@/models/OG";
 import { validateInputs, validateIndices } from "./input_validation";
 
 const token = process.env.TELEGRAM_BOT_TOKEN || "<TELEGRAM BOT1 TOKEN>";

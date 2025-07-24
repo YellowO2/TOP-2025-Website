@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { GoChevronLeft, GoChevronRight } from 'react-icons/go';
 import OGCard from './OGCard';
-import { OG_INFO } from '@/app/lib/constants/oginfo';
+import { OG_INFO } from '@/lib/constants/oginfo';
 
 function FeaturedGroups() {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

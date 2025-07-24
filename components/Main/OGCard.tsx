@@ -1,4 +1,4 @@
-import { OG_INFO } from "@/app/lib/constants/oginfo"
+import { OG_INFO } from "@/lib/constants/oginfo"
 import Image from "next/image"
 import Link from "next/link"
 

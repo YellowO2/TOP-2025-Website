@@ -6,8 +6,8 @@ import {
   getAllOGs,
   isDataInitialized,
   initializeData,
-} from "../../lib/database";
-import { chatToDistrictMap } from "../../lib/config/chatMapping";
+} from "../../../lib/database";
+import { chatToDistrictMap } from "../../../lib/config/chatMapping";
 
 const token = process.env.TELEGRAM_BOT_TOKEN_CGLS;
 if (!token)

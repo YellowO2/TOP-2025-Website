@@ -3,7 +3,7 @@ import {
   getAllOGs,
   initializeData,
   isDataInitialized,
-} from "../../lib/database";
+} from "../../../lib/database";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);

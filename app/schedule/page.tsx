@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { SCHEDULE } from '@/app/lib/constants/schedule'
+import { SCHEDULE } from '@/lib/constants/schedule'
 
 
 const events = SCHEDULE.flatMap(day =>

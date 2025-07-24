@@ -1,5 +1,5 @@
 // validators.ts
-import { HungerGamesItem, ITEM_MAPPING } from "@/app/models/HungerGamesItem";
+import { HungerGamesItem, ITEM_MAPPING } from "@/models/HungerGamesItem";
 
 export type ValidationResult = {
   isValid: boolean;

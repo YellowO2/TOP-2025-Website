@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { PROGRAMS } from "@/app/lib/constants/programs"
+import { PROGRAMS } from "@/lib/constants/programs"
 
 function GameCard(
     {
