@@ -5,6 +5,7 @@ import Navbar from "@/components/General/Navbar";
 import Smooth from "@/components/General/Smooth";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://ccdstop.com"),
   title: "Home | CCDS TOP™",
   description:
     "Official Website of CCDS TOP™. Our CCDS freshman orientation program is designed to help you transition smoothly into university life at NTU. Explore our resources, events, and community support to make the most of your first year.",

@@ -8,6 +8,7 @@ export async function generateMetadata({ params }: { params: Promise<{ game: str
     const gameParam = decodeURIComponent(gameParamRaw);
     const program = PROGRAMS.find(p => p.name === gameParam);
     return {
+        metadataBase: new URL("https://ccdstop.com"),
         title: program ? `${program.name} | CCDS TOP™` : "Game | CCDS TOP™",
         description: program?.caption || "Learn more about the game in CCDS TOP™.",
         openGraph: {

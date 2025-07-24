@@ -3,6 +3,7 @@ import Introduction from "@/components/About/Introduction"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
+    metadataBase: new URL("https://ccdstop.com"),
     title: "About Us | CCDS TOP™",
     description: "Learn more about CCDS TOP™ and its mission.",
     openGraph: {

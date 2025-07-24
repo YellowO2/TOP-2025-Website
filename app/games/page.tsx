@@ -1,8 +1,9 @@
 import GameCard from "@/components/Game/GameCard"
-import { PROGRAMS } from "@/lib/constants/programs"
+import { PROGRAMS } from "@/lib/constants/programs";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
+    metadataBase: new URL("https://ccdstop.com"),
     title: "Games | CCDS TOP™",
     description: "Explore the games offered by CCDS TOP™.",
     openGraph: {

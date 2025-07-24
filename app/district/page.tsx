@@ -3,6 +3,7 @@ import DistrictPage from "./DistrictPage";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
+    metadataBase: new URL("https://ccdstop.com"),
     title: "District | CCDS TOP™",
     description: "Learn more about the districts in CCDS TOP™.",
     openGraph: {

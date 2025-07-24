@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import FAQs from "./FAQs";
 
 export const metadata: Metadata = {
+    metadataBase: new URL("https://ccdstop.com"),
     title: "FAQs | CCDS TOP™",
     description: "Find answers to frequently asked questions about CCDS TOP™.",
     openGraph: {

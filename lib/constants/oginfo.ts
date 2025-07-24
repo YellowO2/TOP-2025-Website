@@ -64,24 +64,24 @@ export const OG_INFO = [
   },
   {
     district: "District 10",
-    name: "Agriculture",
+    name: "Livestock",
     logo: "/og-logos/11.svg",
+    description:
+      "In rolling pastures under wide skies, District 10 tends to the gentle giants. Their ranchers speak the language of animals, their veterinarians heal with compassion, and their dairy farmers provide the milk that builds strong bones and stronger communities.",
+  },
+  {
+    district: "District 11",
+    name: "Agriculture",
+    logo: "/og-logos/12.svg",
     description:
       "District 11 plants hope in every seed. Their farmers read the seasons like poetry, their researchers unlock nature's secrets, and their harvesters celebrate each golden field. They are the feeders of nations, turning earth and rain into abundance.",
   },
   {
-    district: "District 11",
-    name: "Coal Mining",
-    logo: "/og-logos/10.svg",
-    description:
-      "Deep beneath the earth, District 12 descends into darkness to bring up light. Their miners brave the depths with courage, their engineers tame the underground, and their families keep the home fires burning. They dig for the energy that powers progress.",
-  },
-  {
     district: "District 12",
-    name: "Livestock",
+    name: "Coal Mining",
     logo: "/og-logos/13.svg",
     description:
-      "In rolling pastures under wide skies, District 10 tends to the gentle giants. Their ranchers speak the language of animals, their veterinarians heal with compassion, and their dairy farmers provide the milk that builds strong bones and stronger communities.",
+      "Deep beneath the earth, District 12 descends into darkness to bring up light. Their miners brave the depths with courage, their engineers tame the underground, and their families keep the home fires burning. They dig for the energy that powers progress.",
   },
   {
     district: "District 13",

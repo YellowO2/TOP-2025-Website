@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import CheckInPage from "./CheckInPage";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://ccdstop.com"),
   title: "Check In | CCDS TOP™",
   description: "Check in to a room and manage your resources in CCDS TOP™.",
   openGraph: {

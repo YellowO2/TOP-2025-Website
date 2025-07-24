@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Image from "next/image"
 
 export const metadata: Metadata = {
+    metadataBase: new URL("https://ccdstop.com"),
     title: "Scavenger Hunt | CCDS TOP™",
     description: "Participate in the Scavenger Hunt at CCDS TOP™.",
     openGraph: {
