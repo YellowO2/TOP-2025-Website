@@ -52,7 +52,7 @@ function ScavengerHunt() {
                 </p>
                 <h2 className="w-full mt-12 font-homevideo">Scavenger Hunt</h2>
                 <ol className="list-decimal list-inside text-left w-full mt-2 space-y-6">
-                    <li>Team selfie with an "NTU" sign.</li>
+                    <li>Team selfie with an &quot;NTU&quot; sign.</li>
                     <li>Find and take a selfie with a group of students studying together.</li>
                     <li>Take a photo with a sculpture or art installation on campus.</li>
                     <li>Snap a photo of your team trying something at a canteen on campus.</li>
@@ -68,9 +68,9 @@ function ScavengerHunt() {
                     <li>Take a group photo at the entrance of the CCDS Student Lounge.</li>
                     <li>Capture a group photo at the entrance of the CCDS</li>
                     <li>building, but everyone must strike their best superhero pose.</li>
-                    <li>Snap a photo of a team member attempting to "upgrade" themselves with makeshift robotic enhancements (made from cardboard, foil, etc.).</li>
-                    <li>Team selfie with a "404 Error" sign. Get creative :)</li>
-                    <li>Get another team's GL to do something quirky.</li>
+                    <li>Snap a photo of a team member attempting to &quot;upgrade&quot; themselves with makeshift robotic enhancements (made from cardboard, foil, etc.).</li>
+                    <li>Team selfie with a &quot;404 Error&quot; sign. Get creative :)</li>
+                    <li>Get another team&apos;s GL to do something quirky.</li>
                     <li>Take a picture with the best dressed staff you can see</li>
                 </ol>
             </div>
