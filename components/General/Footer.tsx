@@ -3,6 +3,7 @@
 import { FaInstagram, FaWhatsapp } from 'react-icons/fa'
 import { HiOutlineMail } from 'react-icons/hi'
 import Link from 'next/link'
+import Image from 'next/image'
 
 function Footer() {
     return (
@@ -11,10 +12,12 @@ function Footer() {
             <div className='flex flex-col md:flex-row pb-12 justify-start md:justify-between border-b border-white/10 grow-8'>
                 {/* logo section */}
                 <div className='flex flex-col justify-start items-start mb-4 font-homevideo font-bold tracking-tight text-xl text-white/25'>
-                    {/* <Logo
+                    <Image
+                        src="/og-logos/1.svg"
+                        alt="Logo"
                         width={60}
                         height={60}
-                    /> */}
+                    />
 
                 </div>
 
