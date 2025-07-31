@@ -1,7 +1,7 @@
 'use client'
 import Image from "next/image";
 import { HiOutlineArchive } from "react-icons/hi";
-import { IoLocationOutline, IoShirtOutline, IoTimerOutline } from "react-icons/io5";
+import { IoLocationOutline, IoShirtOutline } from "react-icons/io5";
 import { useParams } from "next/navigation";
 import { PROGRAMS } from "@/lib/constants/programs";
 
