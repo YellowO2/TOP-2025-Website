@@ -10,8 +10,7 @@ import { fragmentShader } from './shaders/ember.frag'
 
 
 export default function ParticleMesh() {
-    // Use environment variable for model URL, fallback to local
-    const modelPath = process.env.NEXT_PUBLIC_MODEL_CDN_URL || '/mockingjay-packed-amlu.glb'
+    const modelPath = '/mockingjay-packed-amlu.glb'
     const pointsRef = useRef<THREE.Points>(null)
     const pointThreshold = 0.6
     const [hovered, setHovered] = useState(false)

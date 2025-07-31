@@ -25,6 +25,7 @@ function OGCard(
                 height={144}
                 quality={100}
                 className="mb-8 [mask-image:linear-gradient(to_bottom_right,white,black)]"
+                loading="lazy"
             />
             <p className=" flex text-xs font-homevideo mb-2">
                 {ogInfo.district}
