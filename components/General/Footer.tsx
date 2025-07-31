@@ -13,7 +13,7 @@ function Footer() {
                 {/* logo section */}
                 <div className='flex flex-col justify-start items-start mb-4 font-homevideo font-bold tracking-tight text-xl text-white/25'>
                     <Image
-                        src="/og-logos/1.svg"
+                        src="top-logo.svg"
                         alt="Logo"
                         width={60}
                         height={60}

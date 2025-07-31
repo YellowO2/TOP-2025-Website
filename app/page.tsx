@@ -9,10 +9,7 @@ export default function Home() {
   return (
     <>
       <div
-        className="flex relative w-full h-screen z-1 items-center justify-center"
-        style={{
-          background: "radial-gradient(circle at center, rgba(255,0,0,0.07) 0%, rgba(255,0,0,0.03) 20%, rgba(0,0,0,1) 45%)"
-        }}
+        className="flex relative w-full h-screen z-1 items-center justify-center bg-[url('/bgfinal.jpg')] bg-cover bg-center md:bg-left transition-all duration-500 ease-in-out"
       >
         <Scene />
         <MainComponent />

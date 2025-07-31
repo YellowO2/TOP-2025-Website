@@ -67,8 +67,7 @@ function ScavengerHunt() {
                     <li>Get a picture of your team creating a human pyramid in front of any NTU building.</li>
                     <li>Snap a photo of a team member giving a thumbs-up to a campus</li>
                     <li>Take a group photo at the entrance of the CCDS Student Lounge.</li>
-                    <li>Capture a group photo at the entrance of the CCDS</li>
-                    <li>building, but everyone must strike their best superhero pose.</li>
+                    <li>Capture a group photo at the entrance of the CCDS building, but everyone must strike their best superhero pose.</li>
                     <li>Snap a photo of a team member attempting to &quot;upgrade&quot; themselves with makeshift robotic enhancements (made from cardboard, foil, etc.).</li>
                     <li>Team selfie with a &quot;404 Error&quot; sign. Get creative :)</li>
                     <li>Get another team&apos;s GL to do something quirky.</li>

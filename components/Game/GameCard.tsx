@@ -22,7 +22,7 @@ function GameCard(
                     style={{ objectPosition: 'center' }}
                 />
                 <div className="absolute top-4 right-4 text-xs font-medium">
-                    Sunday, 13 July
+                    {program?.date || "Unknown date"}
                 </div>
             </div>
             <div className="flex flex-col gap-3 w-full py-4 px-8">

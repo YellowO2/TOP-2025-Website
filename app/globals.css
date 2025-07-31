@@ -82,7 +82,7 @@ h2 {
 }
 
 .navMenuItem {
-  @apply text-white px-3 tracking-tight pb-1 pt-[4px] rounded-full cursor-pointer duration-200 transition ease-in-out
+  @apply text-white px-3 tracking-tight pb-1 pt-[4px] rounded-full cursor-pointer duration-200 transition ease-in-out text-[10px]
 }
 
 .navDropdownMenuBox {

@@ -38,7 +38,7 @@ export const vertexShader = `
         vec3 displaced = position + vec3(dir * strength + velocityOffset, 0.0) + flyOffset;
 
         // Twinkle and size
-        float twinkle = 1.0 + 1.5 * sin(uTime * 10.0 * aScale + aPhase);
+        float twinkle = 1.0 + 3.0 * sin(uTime * 10.0 * aScale + aPhase);
         float size = (8.0 + 84.0 * aScale) * twinkle;
 
         vec4 finalPosition = modelViewMatrix * vec4(displaced, 1.0);

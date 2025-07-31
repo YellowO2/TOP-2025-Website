@@ -10,10 +10,10 @@ import { fragmentShader } from './shaders/ember.frag'
 
 
 export default function ParticleMesh() {
-
-    const modelPath = '/mockingjay-packed-amlu.glb'
+    // Use environment variable for model URL, fallback to local
+    const modelPath = process.env.NEXT_PUBLIC_MODEL_CDN_URL || '/mockingjay-packed-amlu.glb'
     const pointsRef = useRef<THREE.Points>(null)
-    const pointThreshold = 0.5
+    const pointThreshold = 0.6
     const [hovered, setHovered] = useState(false)
 
     const gltf = useLoader(
@@ -57,7 +57,7 @@ export default function ParticleMesh() {
     const uniforms = useMemo(() => ({
         uTime: { value: 0 },
         uMouse: { value: new THREE.Vector2(0, 0) },
-        uMouseVelocity: { value: new THREE.Vector2(0, 0) }, // <-- Add this
+        uMouseVelocity: { value: new THREE.Vector2(0, 0) },
         uHover: { value: 1 },
     }), [])
 
@@ -170,8 +170,21 @@ export default function ParticleMesh() {
     })
     const onPointerOver = useCallback(() => setHovered(true), [])
     const onPointerOut = useCallback(() => setHovered(false), [])
+    const onPointerMove = useCallback(() => setHovered(true), [])
+    const onPointerDown = useCallback(() => setHovered(true), [])
+    const onPointerUp = useCallback(() => setHovered(false), [])
 
     if (!geometry) return null
 
-    return <points onPointerOver={onPointerOver} onPointerOut={onPointerOut} ref={pointsRef} geometry={geometry} material={material} rotation={[Math.PI / 2, 0, 0]} />
+    return <points
+        onPointerOver={onPointerOver}
+        onPointerOut={onPointerOut}
+        onPointerMove={onPointerMove}
+        onPointerDown={onPointerDown}
+        onPointerUp={onPointerUp}
+        ref={pointsRef}
+        geometry={geometry}
+        material={material}
+        rotation={[Math.PI / 2, 0, 0]}
+    />
 }

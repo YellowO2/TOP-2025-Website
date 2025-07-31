@@ -63,16 +63,6 @@ function GamePage() {
                     </div>
 
                     <div className='flex items-center flex-row gap-6 w-full'>
-                        <IoTimerOutline size={24} />
-                        <div className='flex flex-col'>
-                            <p className='flex font-semibold text-base'>Schedule</p>
-                            <p className='font-light'>
-                                10:00 AM – 11:30 AM
-                            </p>
-                        </div>
-                    </div>
-
-                    <div className='flex items-center flex-row gap-6 w-full'>
                         <HiOutlineArchive size={24} />
                         <div className='flex flex-col'>
                             <p className='flex font-semibold text-base'>What to bring</p>
