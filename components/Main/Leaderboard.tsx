@@ -79,7 +79,10 @@ function Leaderboard() {
                                 const districtNum = match ? parseInt(match[1], 10) : null;
                                 return districtNum !== null && districtNum >= 1 && districtNum <= 6;
                             })
-                            .sort((a, b) => (b.itemCount ?? 0) - (a.itemCount ?? 0))
+                            .sort((a, b) => {
+                                // console.log('Sorting object b (Districts 1-6):', b);
+                                return (b.itemCount ?? 0) - (a.itemCount ?? 0);
+                            })
                             .map((record, index) => (
                                 <LeaderboardRecord
                                     key={index}
@@ -109,7 +112,10 @@ function Leaderboard() {
                                 const districtNum = match ? parseInt(match[1], 10) : null;
                                 return districtNum !== null && districtNum >= 7 && districtNum <= 13;
                             })
-                            .sort((a, b) => (b.itemCount ?? 0) - (a.itemCount ?? 0))
+                            .sort((a, b) => {
+                                // console.log('Sorting object (Districts 7-13):', b);
+                                return (b.itemCount ?? 0) - (a.itemCount ?? 0);
+                            })
                             .map((record, index) => (
                                 <LeaderboardRecord
                                     key={index}
