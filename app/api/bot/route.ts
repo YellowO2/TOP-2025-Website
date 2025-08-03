@@ -33,6 +33,8 @@ async function isUserAdmin(ctx: Context): Promise<boolean> {
     "hitansh_1212",
     "aadijha1411",
     "Preesha_M",
+    "enchEEsEz",
+    "bigpatootie",
   ];
   const username = ctx.from?.username;
 
