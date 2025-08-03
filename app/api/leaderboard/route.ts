@@ -7,6 +7,9 @@ import {
   isDataInitialized,
 } from "../../../lib/database";
 
+export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store";
+
 // GET handler for the leaderboard API route
 export async function GET() {
   if (!isDataInitialized()) {
