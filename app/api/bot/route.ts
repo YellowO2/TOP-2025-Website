@@ -8,6 +8,7 @@ import {
   getAllOGs,
   isDataInitialized,
   initializeData,
+  refreshDataFromSource,
 } from "../../../lib/database";
 import { SubOG } from "@/models/OG";
 import { validateInputs, validateIndices } from "./input_validation";
@@ -73,6 +74,7 @@ Available commands:
 /add [og] [sub-og] [item] - Add an item to a Sub-og
 /remove [og] [sub-og] [item] - Remove an item from a Sub-og
 /view [og] [sub-og] - View items of a Sub-og
+/refresh - Force refresh data from JSONBin (fixes sync issues)
 
 Format:
 - og: 1-13
@@ -288,6 +290,24 @@ bot.command("reset", async (ctx) => {
   } catch (error) {
     await ctx.reply(
       `Error during reset: ${
+        error instanceof Error ? error.message : "Unknown error"
+      }`
+    );
+  }
+});
+
+bot.command("refresh", async (ctx) => {
+  if (!(await isUserAdmin(ctx))) {
+    return ctx.reply(
+      "You are not authorized to use this command in this chat."
+    );
+  }
+  try {
+    await refreshDataFromSource();
+    await ctx.reply(`🔄 Data refreshed successfully from JSONBin!`);
+  } catch (error) {
+    await ctx.reply(
+      `Error refreshing data: ${
         error instanceof Error ? error.message : "Unknown error"
       }`
     );

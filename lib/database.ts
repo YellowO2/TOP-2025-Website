@@ -20,6 +20,14 @@ export function isDataInitialized() {
   return IS_INITIALIZED;
 }
 
+// Force refresh data from JSONBin (use this when you need fresh data)
+export async function refreshDataFromSource() {
+  console.log("Refreshing data from JSONBin...");
+  allOGs = await loadOGData();
+  IS_INITIALIZED = true;
+  console.log("Data refreshed successfully");
+}
+
 // --------- Getters and Setters --------
 export function getAllOGs(): OG[] {
   return allOGs;
