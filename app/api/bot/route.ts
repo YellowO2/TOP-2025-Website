@@ -69,6 +69,38 @@ async function isUserAdmin(ctx: Context): Promise<boolean> {
 // check if OG data initialised
 if (!isDataInitialized()) initializeData();
 
+// Helper function to ensure data is loaded before executing commands
+async function ensureDataLoaded(ctx?: Context): Promise<boolean> {
+  if (!isDataInitialized() || getAllOGs().length === 0) {
+    console.log("Data not initialized or empty, loading from JSONBin...");
+
+    // Send loading message if context is provided
+    if (ctx) {
+      await ctx.reply("⏳ Loading data from backend, please wait...");
+    }
+
+    try {
+      await refreshDataFromSource();
+      const success = getAllOGs().length > 0;
+
+      if (ctx && success) {
+        await ctx.reply("✅ Data loaded successfully!");
+      }
+
+      return success;
+    } catch (error) {
+      console.error("Failed to load data:", error);
+      if (ctx) {
+        await ctx.reply(
+          "❌ Failed to load data from backend. Please try again later."
+        );
+      }
+      return false;
+    }
+  }
+  return true;
+}
+
 const helpText = `
 Available commands:
 /add [og] [sub-og] [item] - Add an item to a Sub-og
@@ -101,7 +133,10 @@ bot.command("help", async (ctx) => {
       "You are not authorized to use this command. Please use the admin chat."
     );
   }
-  if (!isDataInitialized()) initializeData();
+
+  // Ensure data is loaded
+  await ensureDataLoaded(ctx);
+
   ctx.reply(helpText);
 });
 
@@ -111,7 +146,10 @@ bot.command("start", async (ctx) => {
       "You are not authorized to use this command in this chat. Please use the admin chat."
     );
   }
-  if (!isDataInitialized()) initializeData();
+
+  // Ensure data is loaded
+  await ensureDataLoaded(ctx);
+
   const username = ctx.from?.username
     ? `@${ctx.from.username}`
     : ctx.from?.first_name || "there";
@@ -127,6 +165,12 @@ bot.command("add", async (ctx) => {
       "You are not authorized to use this command in this chat."
     );
   }
+
+  // Ensure data is loaded
+  if (!(await ensureDataLoaded(ctx))) {
+    return; // Error message already sent by ensureDataLoaded
+  }
+
   if (!ctx.message) {
     return ctx.reply("Invalid format.");
   }
@@ -144,8 +188,13 @@ bot.command("add", async (ctx) => {
     return ctx.reply(validation.error!);
   }
 
+  const ogs = getAllOGs();
+  if (ogs.length === 0) {
+    return ctx.reply("⚠️ Data not loaded. Please wait a moment and try again.");
+  }
+
   const subOG: SubOG =
-    getAllOGs()[parseInt(ogIndex) - 1].subOGs[parseInt(subOGIndex) - 1];
+    ogs[parseInt(ogIndex) - 1].subOGs[parseInt(subOGIndex) - 1];
   if (!subOG) {
     return ctx.reply("Sub-District not found");
   }
@@ -173,6 +222,12 @@ bot.command("remove", async (ctx) => {
       "You are not authorized to use this command in this chat."
     );
   }
+
+  // Ensure data is loaded
+  if (!(await ensureDataLoaded(ctx))) {
+    return; // Error message already sent by ensureDataLoaded
+  }
+
   if (!ctx.message) {
     return ctx.reply("Invalid format.");
   }
@@ -190,8 +245,13 @@ bot.command("remove", async (ctx) => {
     return ctx.reply(validation.error!);
   }
 
+  const ogs = getAllOGs();
+  if (ogs.length === 0) {
+    return ctx.reply("⚠️ Data not loaded. Please wait a moment and try again.");
+  }
+
   const subOG: SubOG =
-    getAllOGs()[parseInt(ogIndex) - 1].subOGs[parseInt(subOGIndex) - 1];
+    ogs[parseInt(ogIndex) - 1].subOGs[parseInt(subOGIndex) - 1];
   if (!subOG) {
     return ctx.reply("Sub-District not found");
   }
@@ -228,6 +288,12 @@ bot.command("view", async (ctx) => {
       "You are not authorized to use this command in this chat."
     );
   }
+
+  // Ensure data is loaded
+  if (!(await ensureDataLoaded(ctx))) {
+    return; // Error message already sent by ensureDataLoaded
+  }
+
   if (!ctx.message) {
     return ctx.reply("Invalid format.");
   }
@@ -249,6 +315,10 @@ bot.command("view", async (ctx) => {
   const subOGIndexNum = parseInt(subOGIndex);
 
   const ogs = getAllOGs();
+  if (ogs.length === 0) {
+    return ctx.reply("⚠️ Data not loaded. Please wait a moment and try again.");
+  }
+
   const selectedOG = ogs[ogIndexNum - 1];
   if (!selectedOG) {
     return ctx.reply("District not found");
