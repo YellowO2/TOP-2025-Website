@@ -1,7 +1,7 @@
 # CCDS 2025 Orientation Website
 
 ## Overview
-A website + telegram management system used for managing and displaying realtime leaderboard and activities for NTU CCDS 2025 Orientation. The system supported the orientation event reliably for 40+ GLs managing OG activities.
+A website + telegram management system used for managing and displaying realtime leaderboard and activities for NTU CCDS 2025 Orientation. The system supported the orientation event reliably for OGLs/GameMasters managing OG activities.
 
 ## Features
 
@@ -24,7 +24,7 @@ A website + telegram management system used for managing and displaying realtime
 
 - **Framework:** Next.js (React)
 - **Backend:** Next.js API Routes
-- **Database:** JSONBin.io API
+- **Database:** JSONBin API
 - **Bot:** grammY framework (via Telegram Webhooks)
 - **Deployment:** Vercel
 
